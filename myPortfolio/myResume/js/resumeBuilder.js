@@ -188,7 +188,7 @@ var projects = {
             "dates" : "June 2016",
             "description" : "Implemented a priority queue as a linear linked list and a doubly linked list in order to evalute how effective each implementation was in regards to run time and insertion operations",
             "images" : [
-                 ""
+                 "http://placehold.it/150x150"
             ],
             "url" : "https://github.com/kwidmann137/Data-Structures/tree/master/Priority-Queues",
             "liveSite" : "#"
@@ -197,16 +197,16 @@ var projects = {
             "dates" : "June 2016",
             "description" : "Implemented a binary tree, constructed with 100 random numbers.  50 tree were generated with level differences recorded and stored.  Level differences were then printed out to analyze the balance of a randomly generated tree.",
             "images" : [
-                 "https://github.com/kwidmann137/Data-Structures/tree/master/Binary-Tress"
+                 "http://placehold.it/150x150"
             ],
-            "url" : "",
+            "url" : "https://github.com/kwidmann137/Data-Structures/tree/master/Binary-Tress",
             "liveSite" : "#"
         }, {
             "title" : "Insertion Sort",
             "dates" : "July 2016",
             "description" : "Implemented a standard insertion sort, and a two-way insertion sort using a circular array, in order to evaulte run time and insertion operations.",
             "images" : [
-                 ""
+                 "http://placehold.it/150x150"
             ],
             "url" : "https://github.com/kwidmann137/Data-Structures/tree/master/Insertion-Sort",
             "liveSite" : "#"
@@ -215,7 +215,7 @@ var projects = {
             "dates" : "July 2016",
             "description" : "Implemented C code to read an adjacency matrix from a data file and determine if the graph was a directed acyclic graph.  The adjacency matrix was evaluated using a recursive depth first search to test for back edges.",
             "images" : [
-                 ""
+                 "http://placehold.it/150x150"
             ],
             "url" : "https://github.com/kwidmann137/Data-Structures/tree/master/Graph-Testing",
             "liveSite" : "#"
@@ -254,7 +254,7 @@ var projects = {
                 "images_src/FroggerScrnSht.png"
             ],
             "url": "https://github.com/kwidmann137/Frogger",
-            "liveSite" : "kwidmann137.github.io/Frogger"
+            "liveSite" : "https://kwidmann137.github.io/Frogger"
         }]
     }
 };
@@ -396,7 +396,7 @@ projects.display = function() {
                     var formattedDates = HTMLprojectDates.replace("%data%", projects[type].projects[project].dates);
                     var formattedSourceCode = HTMLprojectSourceCode.replace("%link%", projects[type].projects[project].url);
                     var formattedDescription = HTMLprojectDescription.replace("%data%", projects[type].projects[project].description);
-                    var formattedLiveSite = HTMprojectLiveSite.replace("%link%", projects[type].projects[project].liveSite);
+                    var formattedLiveSite = HTMLprojectLiveSite.replace("%link%", projects[type].projects[project].liveSite);
 
                     if(projects[type].projects[project].liveSite != '#'){
                         var formattedProject = formattedTitle + formattedDates + formattedSourceCode + formattedDescription + formattedLiveSite;
