@@ -40,7 +40,7 @@ var bio = {
             "iClass": '<i class="fa fa-twitter-square" aria-hidden="true">'
         },
         "linkedIn": {
-            "link": "#",
+            "link": "https://www.linkedin.com/profile/preview?vpa=pub&locale=en_US",
             "iClass": '<i class="fa fa-linkedin-square" aria-hidden="true"></i>'
         }
     },
@@ -74,22 +74,16 @@ var work = {
     //List in chronological order, starting with most recent
     "jobs": [{
         "employer": "GOLD's Gym",
-        "title": "GOLD'SFIT Coach",
+        "title": "GOLD'SFIT Head Coach",
         "location": "San Antonio TX",
-        "dates": "Aug 2015 - Present",
-        "description": "Launched and developed the GOLD'SFIT program, building from 0 to over 100 active athletes.  Oversaw coach development, instructing on proper technique, class management and cueing. Managed customer care and monthly business plans to ensure the business reached goals and continued to grow."
-    }, {
-        "employer": "GOLD's Gym",
-        "title": "Personal Trainer",
-        "location": "San Antonio TX",
-        "dates": "Feb 2015-Jul 2015",
-        "description": "Developed personalized workout routines for clients. Instructed clients on proper form, technique and self-care methods to aid in overall health."
+        "dates": "Feb 2015 - Present",
+        "description": "Developed and launched the GOLD'SFIT program, building from 0 to over 100 active athletes.  Oversaw coach development, instructing on proper technique, class management and cueing. Managed customer care and monthly business plans to ensure the business reached goals and continued to grow."
     }, {
         "employer": "United States Navy",
         "title": "Leading Petty Officer",
         "location": "Norfolk VA (USS Bainbridge)",
         "dates": "Jul 2013 - Jan 2015",
-        "description": "As Watch Supervisor and Leading Petty Officer led a division of 18 Sailors through training for combat watches as well as daily tasking."
+        "description": "As Watch Supervisor and Leading Petty Officer led a division of 18 Sailors through training for combat watches.  Handled daily tasking to ensure completion of objectives by superiors.  Held duties as Tactical Data Link Coordinator, responsible for maintining tactical data links between ships and commands, ensuring a complete and accurate tactical picture for the fleet."
     }, {
         "employer": "United States Navy",
         "title": "Battle Wath Supervisor",
@@ -157,6 +151,11 @@ var education = {
             "school": "Udemy",
             "dates": "June 2016",
             "url": "https://www.udemy.com/c-programming-for-beginners/"
+        }, {
+            "title" : "Front End Web Developer NanoDegree",
+            "school" : "Udacity",
+            "date" : "June 2016 - August 2016",
+            "url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
         }
     ]
 };
@@ -167,19 +166,59 @@ var projects = {
     //     "title" : "",
     //     "dates" : "",
     //     "description" : "",
-    //     "image" : "",
+    //     "images" : [
+    //          ""
+    //     ],
     //     "url" : ""               // URL to github with code
     // }
     "C": {
         "type": "C",
-        "projects": [{
+        "projects": [
+        {
             "title": "Library Transactions",
             "dates": "2016",
             "description": "Develop C code to take an input file, process the commands, build a binary tree ordered by Book ID's, print original book information, process customer transactions, list receipts, and print out new book information.",
             "images": [
                 "images_src/library-receipt.jpg"
             ],
-            "url": "#"
+            "url": "https://github.com/kwidmann137/Library-Transactions",
+            "liveSite" : "#"
+        }, {
+            "title" : "Priority Queues",
+            "dates" : "June 2016",
+            "description" : "Implemented a priority queue as a linear linked list and a doubly linked list in order to evalute how effective each implementation was in regards to run time and insertion operations",
+            "images" : [
+                 ""
+            ],
+            "url" : "https://github.com/kwidmann137/Data-Structures/tree/master/Priority-Queues",
+            "liveSite" : "#"
+        }, {
+            "title" : "Binary Tress",
+            "dates" : "June 2016",
+            "description" : "Implemented a binary tree, constructed with 100 random numbers.  50 tree were generated with level differences recorded and stored.  Level differences were then printed out to analyze the balance of a randomly generated tree.",
+            "images" : [
+                 "https://github.com/kwidmann137/Data-Structures/tree/master/Binary-Tress"
+            ],
+            "url" : "",
+            "liveSite" : "#"
+        }, {
+            "title" : "Insertion Sort",
+            "dates" : "July 2016",
+            "description" : "Implemented a standard insertion sort, and a two-way insertion sort using a circular array, in order to evaulte run time and insertion operations.",
+            "images" : [
+                 ""
+            ],
+            "url" : "https://github.com/kwidmann137/Data-Structures/tree/master/Insertion-Sort",
+            "liveSite" : "#"
+        }, {
+            "title" : "Graph Testing",
+            "dates" : "July 2016",
+            "description" : "Implemented C code to read an adjacency matrix from a data file and determine if the graph was a directed acyclic graph.  The adjacency matrix was evaluated using a recursive depth first search to test for back edges.",
+            "images" : [
+                 ""
+            ],
+            "url" : "https://github.com/kwidmann137/Data-Structures/tree/master/Graph-Testing",
+            "liveSite" : "#"
         }]
     },
     "Java": {
@@ -187,12 +226,13 @@ var projects = {
         "projects": [{
             "title": "PONG",
             "dates": "2015",
-            "description": "A game of PONG written in Java using the drawing panel.  The objective was to gain experience in and building a game engine and handling user input.",
+            "description": "A game of PONG written in Java using the drawing panel.  The objective was to gain experience in building a game engine and handling user input.",
             "images": [
                 "images_src/PONG.png"
             ],
 
-            "url": "#"
+            "url": "https://github.com/kwidmann137/Pong",
+            "liveSite" : "#"
         }]
     },
     "Javascript": {
@@ -204,7 +244,8 @@ var projects = {
             "images": [
                 "images_src/myResumeScrnSht.png"
             ],
-            "url": "#" // URL to github with code
+            "url": "#",
+            "liveSite" : "#"
         }, {
             "title": "Frogger",
             "dates": "June 2016",
@@ -212,7 +253,8 @@ var projects = {
             "images": [
                 "images_src/FroggerScrnSht.png"
             ],
-            "url": "#" // URL to github with code
+            "url": "https://github.com/kwidmann137/Frogger",
+            "liveSite" : "kwidmann137.github.io/Frogger"
         }]
     }
 };
@@ -354,10 +396,15 @@ projects.display = function() {
                     var formattedDates = HTMLprojectDates.replace("%data%", projects[type].projects[project].dates);
                     var formattedSourceCode = HTMLprojectSourceCode.replace("%link%", projects[type].projects[project].url);
                     var formattedDescription = HTMLprojectDescription.replace("%data%", projects[type].projects[project].description);
+                    var formattedLiveSite = HTMprojectLiveSite.replace("%link%", projects[type].projects[project].liveSite);
 
-
-                    var formattedProject = formattedTitle + formattedDates + formattedSourceCode + formattedDescription;
-                    $(".project-info:last").append(formattedProject);
+                    if(projects[type].projects[project].liveSite != '#'){
+                        var formattedProject = formattedTitle + formattedDates + formattedSourceCode + formattedDescription + formattedLiveSite;
+                        $(".project-info:last").append(formattedProject);
+                    }else{
+                        var formattedProject = formattedTitle + formattedDates + formattedSourceCode + formattedDescription;
+                        $(".project-info:last").append(formattedProject);
+                    }
                 }
             }
         }

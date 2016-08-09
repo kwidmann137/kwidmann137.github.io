@@ -51,6 +51,7 @@
   var HTMLprojectTitle = '<h4>%data%</h4>';
   var HTMLprojectDates = '<div class="date-text">%data%</div>';
   var HTMLprojectSourceCode = '<a href="%link%" class="btn btn-primary">Source Code</a>';
+  var HTMLprojectLiveSite = '<a href="%link%" class="btn btn-primary">Live Site</a>';
   var HTMLprojectDescription = '<p><br>%data%</p>';
 
 
