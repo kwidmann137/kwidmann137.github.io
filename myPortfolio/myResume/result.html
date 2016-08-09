@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Resume</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+body {
+  margin: 0;
+}
+
+.col-xs-12 {
+  float: left;
+}
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #fff;
+}
+
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+h2 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+small {
+  font-size: 85%;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.col-sm-4,
+.col-sm-8,
+.col-xs-12 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.col-xs-12 {
+  width: 100%;
+}
+
+@media (min-width:768px) {
+  .col-sm-4,
+  .col-sm-8 {
+    float: left;
+  }
+
+  .col-sm-8 {
+    width: 66.66666667%;
+  }
+
+  .col-sm-4 {
+    width: 33.33333333%;
+  }
+}
+
+.container:after,
+.container:before,
+.row:after,
+.row:before {
+  content: " ";
+  display: table;
+}
+
+.container:after,
+.row:after {
+  clear: both;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+.contentHeader,
+body {
+  background-color: #FF5963;
+}
+
+.separator {
+  border-bottom: 2px solid #272822;
+}
+
+.contentHeader div {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.contentHeader h2 {
+  padding-left: 10px;
+}
+
+.content-body {
+  background-color: #F3F3F3;
+}
+
+#mapDiv {
+  height: 400px;
+  width: 100%;
+  padding-bottom: 5%;
+}
+
+</style>
+<script id="loadcss">
+(function(u,s){!function(e){"use strict";var n=function(n,t,o){var l,r=e.document,i=r.createElement("link");if(t)l=t;else{var a=(r.body||r.getElementsByTagName("head")[0]).childNodes;l=a[a.length-1]}var d=r.styleSheets;i.rel="stylesheet",i.href=n,i.media="only x",l.parentNode.insertBefore(i,t?l:l.nextSibling);var f=function(e){for(var n=i.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return i.onloadcssdefined=f,f(function(){i.media=o||"all"}),i};"undefined"!=typeof module?module.exports=n:e.loadCSS=n}("undefined"!=typeof global?global:this);for(var i in u){loadCSS(u[i],s);}}(['bootstrap/css/bootstrap.min.css','css/custom.min.css','css/responsive.min.css','https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'],document.getElementById("loadcss")));
+</script>
+<noscript>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/custom.min.css">
+<link rel="stylesheet" type="text/css" href="css/responsive.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+</noscript>
+
+
+
+
+    <script async type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script async src="js/helper.min.js"></script>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 contentHeader">
+            <!-- Start of section for pic, contact, general/personal info -->
+
+            <div class="row">
+                <!-- Contains pic, name contact info -->
+                <div class="col-xs-12 separator" id="picAndName">
+                </div>
+
+                <div class="col-xs-12 separator">
+                    <div class="row" id="contactInfo">
+                        <h2>Contact Info</h2>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of container for pic, name contact info -->
+
+            <div class="row generalInfo" id="generalInfo">
+                <!-- Contains general info -->
+                <h2 class="">General Info</h2>
+            </div>
+            <!-- End of container general info -->
+
+        </div>
+        <!-- End of section for pic, contact, general/personal -->
+
+        <div class="col-xs-12 col-sm-8 content-body">
+            <!-- Start of body.  Experience etc. -->
+            <div id="workExperience">
+                <h2>Work Experience</h2>
+            </div>
+
+            <div id="projects">
+                <h2>Projects</h2><small>click to expand</small>
+
+            </div>
+
+            <div id="education">
+                <h2>Education</h2>
+            </div>
+
+            <div id="skills">
+                <h2>Technical Skills</h2>
+            </div>
+
+            <div id="mapDiv">
+                <h2>Where I've Lived and Worked</h2>
+            </div>
+        </div>
+        <!-- End of body.  Experience etc. -->
+    </div>
+
+    <script async src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script async src="js/resumeBuilder.min.js"></script>
+</body>
+
+</html>

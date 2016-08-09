@@ -1,0 +1,29 @@
+/********* FULL PAGE *********/
+
+*{
+    font-family: 'Lato', sans-serif;
+}
+
+.header-name{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.header-title{
+    font-size: 26px;
+}
+
+.main-img{
+    width: 100%;
+}
+.logo{
+    max-width: 150px;
+}
+
+.nav-tabs{
+    padding-top: 8px;
+}
+
+.project-img{
+    max-height: 250px;
+}

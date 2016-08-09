@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Resume</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.min.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <script async type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script async src="js/helper.js"></script>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 contentHeader">
+            <!-- Start of section for pic, contact, general/personal info -->
+
+            <div class="row">
+                <!-- Contains pic, name contact info -->
+                <div class="col-xs-12 separator" id="picAndName">
+                </div>
+
+                <div class="col-xs-12 separator">
+                    <div class="row" id="contactInfo">
+                        <h2>Contact Info</h2>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of container for pic, name contact info -->
+
+            <div class="row generalInfo" id="generalInfo">
+                <!-- Contains general info -->
+                <h2 class="">General Info</h2>
+            </div>
+            <!-- End of container general info -->
+
+        </div>
+        <!-- End of section for pic, contact, general/personal -->
+
+        <div class="col-xs-12 col-sm-8 content-body">
+            <!-- Start of body.  Experience etc. -->
+            <div id="workExperience">
+                <h2>Work Experience</h2>
+            </div>
+
+            <div id="projects">
+                <h2>Projects</h2><small>click to expand</small>
+
+            </div>
+
+            <div id="education">
+                <h2>Education</h2>
+            </div>
+
+            <div id="skills">
+                <h2>Technical Skills</h2>
+            </div>
+
+            <div id="mapDiv">
+                <h2>Where I've Lived and Worked</h2>
+            </div>
+        </div>
+        <!-- End of body.  Experience etc. -->
+    </div>
+
+    <script async src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script async src="js/resumeBuilder.js"></script>
+</body>
+
+</html>

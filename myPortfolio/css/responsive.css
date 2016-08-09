@@ -1,0 +1,11 @@
+/**********  MOBILE DEVICES **********/
+
+@media screen and (max-width: 599px){
+    body .header-name{
+        font-size: 26px;
+        font-weight: bold;
+    }
+    body .header-title{
+        font-size: 18px;
+    }
+}
