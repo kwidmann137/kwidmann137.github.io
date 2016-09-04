@@ -1,0 +1,101 @@
+html{
+    width: 100%;
+}
+
+.nav a{
+    color: #999999;
+}
+
+.nav .navbar-toggle .icon-bar {
+    background-color: black;
+}
+
+@media screen and (min-width: 551px){
+    .nav .nav-tabs {
+      display: inline-block;
+      float: none;
+      vertical-align: top;
+    }
+
+    .nav .navbar-collapse {
+      text-align: center;
+    }
+}
+
+.navbar{
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+.header{
+    padding: 20px 20px 0px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.header-img{
+    margin: auto;
+}
+
+.header-item, .header-phone, .header-email{
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    color: white;
+    font-size: 1.8em;
+}
+
+.home-body{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.5em;
+}
+
+.indent{
+    text-indent: 2em;
+}
+
+.apptFrame{
+    width: 95%;
+    height: 800px;
+}
+
+.apptBookingRow{
+    margin: 0 auto;
+}
+
+.slider-div{
+    margin-top: 10px;
+}
+
+.bookingPageImg{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.home-page-sidebar{
+    margin-top: 15px;
+}
+
+.home-page-booking-button{
+    background-color: #C59E5D;
+    height: auto;
+}
+
+.home-page-booking-button a{
+    color: white;
+    font-size: 1.8em;
+    white-space: normal;
+}
+
+.home-page-sidebar p{
+    font-size: .9em;
+}
+
+#map{
+    width: 100%;
+    height: 400px;
+}
+
+.booking-warning{
+    display: none;
+}
