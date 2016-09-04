@@ -24,6 +24,10 @@
         color: red;
         padding: 0px 20px;
     }
+
+    .services-divider{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 800px){
