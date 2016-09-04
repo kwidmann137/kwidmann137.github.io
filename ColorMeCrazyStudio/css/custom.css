@@ -28,14 +28,13 @@ html{
 }
 
 .header{
-    padding: 20px 20px 0px 20px;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 20px;
     width: 100%;
 }
 
 .header-img{
     margin: auto;
+    text-align: center;
 }
 
 .header-item, .header-phone, .header-email{
@@ -138,4 +137,14 @@ text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px
 .left-services-row, .right-services-row{
     width: 100%;
     margin: auto;
+}
+
+.img-logo{
+    max-width: 11%;
+    height: auto;
+}
+
+.img-logo-text{
+    max-width: 75%;
+    height: auto;
 }

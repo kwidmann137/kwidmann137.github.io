@@ -28,10 +28,8 @@
     .services-divider{
         display: none;
     }
-}
 
-@media screen and (max-width: 800px){
-    /*.home-body{
-        padding: 0px 30px;
-    }*/
+    .services-header{
+        font-size: 1.5em;
+    }
 }
