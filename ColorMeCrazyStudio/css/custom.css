@@ -69,12 +69,13 @@ html{
 }
 
 .apptFrame{
-    width: 95%;
+    align: middle;
+    width: 600px;
     height: 800px;
 }
 
 .apptBookingRow{
-    margin: 0 auto;
+    text-align: center;
 }
 
 .slider-div{

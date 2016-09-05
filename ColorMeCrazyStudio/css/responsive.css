@@ -32,4 +32,8 @@
     .services-header{
         font-size: 1.5em;
     }
+
+    .apptBookingRow{
+        padding: 15px;
+    }
 }
