@@ -28,16 +28,12 @@ html{
 }
 
 .header{
-    padding: 20px;
+    padding: 20px 0px 10px;
     width: 100%;
-}
-
-.header-img{
-    margin: auto;
     text-align: center;
 }
 
-.header-item, .header-phone, .header-email{
+.header-item{
     font-family: 'Indie Flower', cursive;
     font-weight: bold;
     color: white;
@@ -125,7 +121,7 @@ html{
 .services-header{
     font-weight: bold;
     font-size: 2em;
-    color: #FFBD33;
+    color: #252529;
     text-align: center;
 }
 
@@ -140,12 +136,7 @@ text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px
     margin: auto;
 }
 
-.img-logo{
-    max-width: 11%;
-    height: auto;
-}
-
 .img-logo-text{
-    max-width: 75%;
+    max-width: 90%;
     height: auto;
 }
