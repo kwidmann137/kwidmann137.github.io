@@ -14,16 +14,10 @@
 
 }
 
-#scheduleItem{
+.scheduleItem{
     border: 1px solid black;
-    width: 30%;
     z-index: 1;
     background-color: #EEEEEE;
-    box-shadow:  -1px 1px 2px #888888,
-         -2px 2px 3px #888888,
-         -3px 3px 4px #888888;
-         /*-4px 4px #888888,*/
-         /*-5px 5px #888888;*/
 }
 
 .calenderContainer{
@@ -39,6 +33,7 @@
 
 .calenderTable td{
     border: 2px solid #EEEEEE;
+    width: 33%;
 }
 
 .calenderTable th{
@@ -105,5 +100,16 @@
     margin-bottom: 5px;
     margin-top: 5px;
     visibility: hidden;
+}
+
+.modal-content{
+    width: 110%;
+}
+
+#scheduleItem{
+    width: 28%;
+    box-shadow:  -1px 1px 2px #888888,
+         -2px 2px 3px #888888,
+         -3px 3px 4px #888888;
 }
 
