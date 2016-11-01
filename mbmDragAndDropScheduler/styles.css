@@ -1,0 +1,101 @@
+.background{
+    background-image: url("./bg.png");
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.schedule-btn{
+    position: absolute;
+    left: 1338px;
+    top: 520px;
+    width: 152px;
+    height: 35px;
+    background-color: #D9534F;
+
+}
+
+#scheduleItem{
+    border: 1px solid black;
+    width: 30%;
+    z-index: 1;
+    background-color: #EEEEEE;
+    box-shadow:  -1px 1px 2px #888888,
+         -2px 2px 3px #888888,
+         -3px 3px 4px #888888;
+         /*-4px 4px #888888,*/
+         /*-5px 5px #888888;*/
+}
+
+.calenderContainer{
+    width: 100%;
+    height: 100%;
+}
+
+.calenderTable{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.calenderTable td{
+    border: 2px solid #EEEEEE;
+}
+
+.calenderTable th{
+    text-align: center;
+}
+
+.timeRow td {
+    height: 20px;
+}
+
+.selectedSlot{
+    background-color: orange;
+    height: 40px;
+    opacity: .5;
+}
+
+.openSlot{
+    background-color: green;
+    height: 40px;
+    opacity: .5;
+}
+
+.blockedSlot{
+    background-color: red;
+    height: 40px;
+    opacity: .5;
+}
+
+.meetingScheduledSlot{
+    background-color: blue;
+    height: 40px;
+    opacity: .5;
+}
+
+.colorCode{
+    padding: 10px;
+}
+
+.colorBox{
+    height: 20px;
+    width: 20px;
+    opacity: .5;
+}
+
+.available{
+    background-color: green;
+}
+
+.filled{
+    background-color: blue;
+}
+
+.blocked{
+    background-color: red;
+}
+
+.selected{
+    background-color: orange;
+}
+

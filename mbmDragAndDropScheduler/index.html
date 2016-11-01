@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Scheduler</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="background">
+        <button type="button" class="btn btn-sm btn-success schedule-btn" data-toggle="modal" data-target="#scheduleModal">Schedule a Meeting</button>
+        <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Schedule Your Meeting</h4>
+              </div>
+              <div class="modal-body" id="schedulerBody">
+                    <div class="colorCode row">
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <div class="col-xs-3 colorBox available">
+
+                                </div>
+                                <div class="col-xs-9 colorBoxLabel">
+                                    <p>Available Slot</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <div class="col-xs-3 colorBox filled">
+
+                                </div>
+                                <div class="col-xs-9 colorBoxLabel">
+                                    <p>Meeting Scheduled</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <div class="col-xs-3 colorBox blocked">
+
+                                </div>
+                                <div class="col-xs-9 colorBoxLabel">
+                                    <p>Blocked Time</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="row">
+                                <div class="col-xs-3 colorBox selected">
+
+                                </div>
+                                <div class="col-xs-9 colorBoxLabel">
+                                    <p>Selected Slot</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scheduleItemDiv row">
+                        <div class="col-xs-4">
+                            <p class="dragInstructions">Drag to desired time:</p>
+                        </div>
+                        <div class="ui-widget-content draggable col-xs-4" id="scheduleItem">
+                            <p class="text-center">B12 Consulting</p>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
+                    <div class="calenderContainer">
+                        <table class="calenderTable">
+                            <tr>
+                                <th>Day 1</th>
+                                <th>Day 2</th>
+                                <th>Day 3</th>
+                            </tr>
+                            <tr class="timeRow">
+                                <td>7:00AM - 7:15AM</td>
+                                <td>7:00AM - 7:15AM</td>
+                                <td>7:00AM - 7:15AM</td>
+                            </tr>
+                            <tr>
+                                <td class="openSlot droppable" id="day1-7:00AM-7:15AM"></td>
+                                <td class="meetingScheduledSlot" id="day2-7:00AM-7:15AM"></td>
+                                <td class="blockedSlot" id="day3-7:00AM-7:15AM"></td>
+                            </tr>
+                             <tr class="timeRow">
+                                <td>7:20AM - 7:35AM</td>
+                                <td>7:20AM - 7:35AM</td>
+                                <td>7:20AM - 7:35AM</td>
+                            </tr>
+                            <tr>
+                                <td class="openSlot droppable" id="day1-7:20AM-7:35AM"></td>
+                                <td class="openSlot droppable" id="day2-7:20AM-7:35AM"></td>
+                                <td class="meetingScheduledSlot" id="day3-7:20AM-7:35AM"></td>
+                            </tr>
+                             <tr class="timeRow">
+                                <td>7:40AM - 7:55AM</td>
+                                <td>7:40AM - 7:55AM</td>
+                                <td>7:40AM - 7:55AM</td>
+                            </tr>
+                            <tr>
+                                <td class="openSlot droppable" id="day1-7:40AM-7:55AM"></td>
+                                <td class="openSlot droppable" id="day2-7:40AM-7:55AM"></td>
+                                <td class="blockedSlot" id="day3-7:40AM-7:55AM"></td>
+                            </tr>
+                             <tr class="timeRow">
+                                <td>8:00AM - 8:15AM</td>
+                                <td>8:00AM - 8:15AM</td>
+                                <td>8:00AM - 8:15AM</td>
+                            </tr>
+                            <tr>
+                                <td class="meetingScheduledSlot" id="day1-8:00AM-8:15AM"></td>
+                                <td class="openSlot droppable" id="day2-8:00AM-8:15AM"></td>
+                                <td class="blockedSlot" id="day3-8:00AM-8:15AM"></td>
+                            </tr>
+                             <tr class="timeRow">
+                                <td>8:20AM - 8:35AM</td>
+                                <td>8:20AM - 8:35AM</td>
+                                <td>8:20AM - 8:35AM</td>
+                            </tr>
+                            <tr>
+                                <td class="meetingScheduledSlot" id="day1-8:20AM-8:35AM"></td>
+                                <td class="openSlot droppable" id="day2-8:20AM-8:35AM"></td>
+                                <td class="openSlot droppable" id="day3-8:20AM-8:35AM"></td>
+                            </tr>
+                             <tr class="timeRow">
+                                <td>8:40AM - 8:55AM</td>
+                                <td>8:40AM - 8:55AM</td>
+                                <td>8:40AM - 8:55AM</td>
+                            </tr>
+                            <tr>
+                                <td class="openSlot droppable" id="day1-8:40AM-8:55AM"></td>
+                                <td class="meetingScheduledSlot" id="day2-8:40AM-8:55AM"></td>
+                                <td class="openSlot droppable" id="day3-8:40AM-8:55AM"></td>
+                            </tr>
+                        </table>
+                    </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".background").css("height", window.innerHeight);
+
+        $( function() {
+            var scheduleObj = {
+                htmlElem: $("#scheduleItem"),
+                dragged: false,
+                scheduledTime: "",
+                offset: $("#scheduleItem").offset(),
+            }
+
+            $( "#scheduleItem" ).draggable({
+                containment: $("#schedulerBody"),
+                opacity: 0.4,
+                snap: true,
+                stop: function(event, ui){
+                    if(scheduleObj.dragged != false && $(this).offset().top != scheduleObj.offset[0].top && $(this).offset().left != scheduleObj.offset[0].left){
+                        var oldSlot = $(".selectedSlot");
+                        oldSlot.removeClass("selectedSlot");
+                        oldSlot.addClass("openSlot");
+                        scheduleObj.scheduledTime = "";
+                        scheduleObj.dragged = false;
+                    }
+                }
+            });
+
+            $(".droppable").droppable({
+                drop: function(event, ui){
+                    if((scheduleObj.dragged) == true){
+                        var oldSlot = $(".selectedSlot");
+                        oldSlot.removeClass("selectedSlot");
+                        oldSlot.addClass("openSlot");
+                    }else{
+                        scheduleObj.dragged = true;
+                    }
+                    $(this).removeClass("openSlot");
+                    $(this).addClass("selectedSlot");
+                    scheduleObj.scheduledTime = $(this).attr('id');
+                    //finally snap object to center;
+                    var itemHeight = (scheduleObj.htmlElem).innerHeight();
+                    var itemWidth =(scheduleObj.htmlElem).innerWidth();
+                    var slotHeight = $(this).innerHeight();
+                    var slotWidth =  $(this).innerWidth();
+                    var leftOffset = ((slotWidth-itemWidth)/2);
+                    var topOffset = ((slotHeight-itemHeight)/2);
+                    $(ui.draggable).offset({top: $(this).offset().top + topOffset, left: $(this).offset().left + leftOffset});
+                    scheduleObj.offset = $(ui.draggable.offset());
+                }
+            });
+        } );
+    </script>
+</body>
+</html>
