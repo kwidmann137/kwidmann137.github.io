@@ -99,3 +99,11 @@
     background-color: orange;
 }
 
+.schedulerWarning{
+    color: red;
+    font-size: 1em;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    visibility: hidden;
+}
+

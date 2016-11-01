@@ -75,6 +75,9 @@
                         </div>
                         <div class="col-xs-4"></div>
                     </div>
+                    <div class="row">
+                        <p class="text-center schedulerWarning">You must drag to an Available Slot</p>
+                    </div>
                     <div class="calenderContainer">
                         <table class="calenderTable">
                             <tr>
@@ -169,12 +172,20 @@
                 opacity: 0.4,
                 snap: true,
                 stop: function(event, ui){
-                    if(scheduleObj.dragged != false && $(this).offset().top != scheduleObj.offset[0].top && $(this).offset().left != scheduleObj.offset[0].left){
+                    if(scheduleObj.dragged == true && $(this).offset().top != scheduleObj.offset.top && $(this).offset().left != scheduleObj.offset.left){
                         var oldSlot = $(".selectedSlot");
                         oldSlot.removeClass("selectedSlot");
                         oldSlot.addClass("openSlot");
                         scheduleObj.scheduledTime = "";
                         scheduleObj.dragged = false;
+                    }
+                    if(scheduleObj.dragged == false){
+                        scheduleObj.htmlElem.css("left", 0);
+                        scheduleObj.htmlElem.css("top", 0);
+                        $(".schedulerWarning").css("visibility", "visible");
+                        setTimeout(function(){
+                            $(".schedulerWarning").css("visibility", "hidden");
+                        }, 5000);
                     }
                 }
             });
@@ -199,7 +210,7 @@
                     var leftOffset = ((slotWidth-itemWidth)/2);
                     var topOffset = ((slotHeight-itemHeight)/2);
                     $(ui.draggable).offset({top: $(this).offset().top + topOffset, left: $(this).offset().left + leftOffset});
-                    scheduleObj.offset = $(ui.draggable.offset());
+                    scheduleObj.offset = $(ui.draggable).offset();
                 }
             });
         } );
