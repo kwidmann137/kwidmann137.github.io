@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">    <title></title>
+
+    <!-- scripts for modal -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type='text/javascript' src='bower_components/knockout/dist/knockout.js'></script>
+
+    <!-- scritp for oAuth -->
+    <script type="text/javascript" src="bower_components/oauth2-client-js/dist/oauth2-client.js"></script>
+    <script type="text/javascript" src="./js/OAuth.js"></script>
+    <script type="text/javascript" src="./js/SHA1.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+    <div class="container row">
+        <div class="show-list-container">
+            <button id="show-list-btn" data-bind="css: { hidden: !listHidden() }, click: toggleList">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="list" data-bind="css: { slide: listHidden() }">
+            <div class="hide-list-btn-div">
+                <button id="hide-list-btn" data-bind="click: toggleList">Hide</button>
+            </div>
+            <!-- <h1>List</h1> -->
+            <div class="list-buttons">
+                <input type="text" name="Search" value="Search..." data-bind="value: searchKeyword" id="search-field">
+                <button id="search-btn" data-bind="click: restoreFeatured">View Featured Locations</button>
+                <button id="search-btn" data-bind="click: search">Search Google Maps</button>
+                <button id="clear-btn" data-bind="click: filterList">Filter Current List</button>
+            </div>
+            <div class="search-results">
+                <div data-bind="if: listEmpty">
+                    No Results to Display
+                </div>
+                <ul id="search-results-ul" data-bind="foreach: listLocations">
+                    <div data-bind="visible: match, click: $parent.animateMarker">
+                        <div class="search-results-li row" data-bind="attr: {id: id}">
+                            <div class="col-xs-9">
+                                <p class="search-result-title" data-bind="text: name"></p>
+                                <p data-bind="text: address"></p>
+                            </div>
+                            <div class="col-xs-3 result-img">
+                                <img data-bind="attr: {src: photoURL}" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="map" id="map" class=col-xs-9>
+    </div>
+
+    </div>
+    <script type="text/javascript" src="./js/mapsJS.js"></script>
+    <script type="text/javascript" src="./js/model.js"></script>
+    <script type="text/javascript" src="./js/yelp.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAz9-1R2mDUiK3Rc5ybWNX-55wRevbIF5Y&libraries=places&callback=initMap"></script>
+
+</body>
+</html>
