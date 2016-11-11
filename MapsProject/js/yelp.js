@@ -1,35 +1,3 @@
-// var jso = new JSO({
-//     providerID: "yelp",
-//     client_id: "9v0dToFOoyuhLJiWJfujRA",
-//     // redirect_uri: "http://bridge.uninett.no/jso/index.html",
-//     authorization: "https://accounts.google.com/o/oauth2/auth",
-//     scopes: { request: ["https://www.googleapis.com/auth/userinfo.profile"]}
-// });
-
-// JSO.enablejQuery($);
-
-// jso.ajax({
-//     url: "https://www.googleapis.com/oauth2/v1/userinfo",
-//     oauth: {
-//         scopes: {
-//             request: ["https://www.googleapis.com/auth/userinfo.email"],
-//             require: ["https://www.googleapis.com/auth/userinfo.email"]
-//         }
-//     },
-//     dataType: 'json',
-//     success: function(data) {
-//         console.log("Response (google):");
-//         console.log(data);
-//         $(".loader-hideOnLoad").hide();
-//     }
-// });\
-
-// var OAuth = require('@zalando/oauth2-client-js');
-// var google = new OAuth.Provider({
-//     id: 'google',   // required
-//     authorization_url: 'https://google.com/auth' // required
-// });
-
 function yelpSearch(location, name, result, marker, type){
     var auth = {
         consumerKey : "9v0dToFOoyuhLJiWJfujRA",

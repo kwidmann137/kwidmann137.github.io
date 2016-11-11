@@ -34,11 +34,11 @@
         <div class="list col-xs-12" data-bind="css: { slide: listHidden() }">
             <div class="row">
                 <div class="list-buttons col-xs-12">
-                    <button id="hide-list-btn" data-bind="click: toggleList">Hide</button>
+                    <button id="hide-list-btn" class="btn btn-danger btn-md" data-bind="click: toggleList">Hide</button>
                     <input type="text" name="Search" value="Search..." data-bind="value: searchKeyword" id="search-field">
-                    <button id="search-btn" data-bind="click: restoreFeatured">View Featured Locations</button>
-                    <button id="search-btn" data-bind="click: search">Search Google Maps</button>
-                    <button id="clear-btn" data-bind="click: filterList">Filter Current List</button>
+                    <button id="featured-location-btn" class="btn btn-primary btn-md" data-bind="click: restoreFeatured">View Featured Locations</button>
+                    <button id="search-btn" class="btn btn-success btn-md" data-bind="click: search">Search Google Maps</button>
+                    <button id="clear-btn" class="btn btn-warning btn-md" data-bind="click: filterList">Filter Current List</button>
                 </div>
             </div>
             <div class="row">
@@ -82,6 +82,13 @@
                 </div>
             </div>
         </div>
+        <!-- <div class="row infoWindowRow">
+            <h3>Test Name</h3>
+        </div>
+        <div class="row infoWindowRow">
+            <p class="col-xs-7">Yelp Review: asdjfalkjwelajklkvjasdjkfdajks</p>
+            <img class="col-xs-5" src="http://placehold.it/100x100">
+        </div> -->
         <div class="map" id="map" class=col-xs-9>
         </div>
 

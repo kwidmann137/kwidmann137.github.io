@@ -1,4 +1,3 @@
-
 var map;
 var bounds;
 var defaultFeaturedIcon;
@@ -6,6 +5,7 @@ var selectedFeaturedIcon;
 var defaultIcon;
 var selectedIcon;
 var largeInfoWindow;
+var infoWindowContent = '<div class="row infoWindowRow"><h3>%name%</h3></div><div class="row infoWindowRow"><p class="col-xs-7">Yelp Review: %yelpReview% </p><img class="col-xs-5 img-responsive" src="%src%"></div>';
 
 function initMap(){
     window.onload = function(){
@@ -55,9 +55,6 @@ function createFeaturedLocation(locationKeyword){
                 id: results[i].place_id,
                 icon: defaultFeaturedIcon,
             });
-            marker.addListener('click', function(){
-                populateInfoWindow(this, largeInfoWindow);
-            });
             //get yelp info for this result
             yelpSearch("San Antonio", results[i].name, results[i], marker, "featured");
             bounds.extend(results[i].geometry.location)
@@ -88,9 +85,6 @@ function mapSearch(searchKeyword){
                 animation: google.maps.Animation.DROP,
                 id: results[i].place_id,
                 icon: defaultIcon,
-            });
-            marker.addListener('click', function(){
-                populateInfoWindow(this, largeInfoWindow);
             });
             yelpSearch("San Antonio", results[i].name, results[i], marker, "search");
             bounds.extend(results[i].geometry.location)
@@ -139,10 +133,17 @@ function mapAnimateMarker(marker, type){
 }
 
 
-function populateInfoWindow(marker, infoWindow){
+function populateInfoWindow(marker, infoWindow, yelpData, result){
     if(infoWindow.marker != marker){
         infoWindow.marker = marker;
-        infoWindow.setContent('<div>'+marker.name+'</div>');
+        var formattedInfoWindow = infoWindowContent.replace("%name%", result.name);
+        var photoURL = typeof result.photos !== 'undefined'
+            ? result.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
+            : ''; //alternative a "nophoto.jpg"
+        formattedInfoWindow = formattedInfoWindow.replace("%src%",photoURL);
+        var yelpReview = yelpData !== null ? yelpData.snippet_text : 'Not Available...';
+        formattedInfoWindow = formattedInfoWindow.replace("%yelpReview%", yelpReview);
+        infoWindow.setContent(formattedInfoWindow);
         infoWindow.open(map, marker);
         infoWindow.addListener('closeclick', function(){
             this.marker = null;
@@ -155,18 +156,21 @@ function mapAddCompletedFeaturedLocation(yelpData, result, marker){
     if(yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
         yelpData = null;
     }
+    marker.addListener('click', function(){
+        populateInfoWindow(this, largeInfoWindow, yelpData, result);
+    });
     //add the location to the knockout array
     myVM.addFeaturedLocation(yelpData, result, marker);
 }
 
 function mapAddCompletedSearchLocation(yelpData, result, marker){
-    //if names don't match dont add to location
-    console.log("map add yelp info");
-    console.log(yelpData.name);
-    console.log(result.name);
-    if(yelpData.name != result.name){
+    //if names don't match dont and addressed don't match, set yelp to null
+    if(yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
         yelpData = null;
     }
+    marker.addListener('click', function(){
+        populateInfoWindow(this, largeInfoWindow, yelpData, result);
+    });
     //if they do match add review to location
     //add the location to the knockout array
     myVM.addSearchResult(yelpData, result, marker);
