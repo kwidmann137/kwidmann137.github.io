@@ -58,7 +58,8 @@ function createFeaturedLocation(locationKeyword){
             marker.addListener('click', function(){
                 populateInfoWindow(this, largeInfoWindow);
             });
-            myVM.addFeaturedLocation(results[i], marker);
+            //get yelp info for this result
+            yelpSearch("San Antonio", results[i].name, results[i], marker, "featured");
             bounds.extend(results[i].geometry.location)
         }
       }
@@ -91,7 +92,7 @@ function mapSearch(searchKeyword){
             marker.addListener('click', function(){
                 populateInfoWindow(this, largeInfoWindow);
             });
-            myVM.addSearchResult(results[i], marker);
+            yelpSearch("San Antonio", results[i].name, results[i], marker, "search");
             bounds.extend(results[i].geometry.location)
         }
       }
@@ -146,9 +147,30 @@ function populateInfoWindow(marker, infoWindow){
         infoWindow.addListener('closeclick', function(){
             this.marker = null;
         }, infoWindow);
-        // console.log(marker.name);
-        yelpSearch("San Antonio", marker.name);
-        //if names don't match dont add to info window;
-        //if they do match add review to info window
     }
 };
+
+function mapAddCompletedFeaturedLocation(yelpData, result, marker){
+    //if names don't match dont and addressed don't match, set yelp to null
+    if(yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
+        yelpData = null;
+    }
+    //add the location to the knockout array
+    myVM.addFeaturedLocation(yelpData, result, marker);
+}
+
+function mapAddCompletedSearchLocation(yelpData, result, marker){
+    //if names don't match dont add to location
+    console.log("map add yelp info");
+    console.log(yelpData.name);
+    console.log(result.name);
+    if(yelpData.name != result.name){
+        yelpData = null;
+    }
+    //if they do match add review to location
+    //add the location to the knockout array
+    myVM.addSearchResult(yelpData, result, marker);
+}
+
+//search locations default to blue once clicked
+//search locations do not clear when hitting view featured locations

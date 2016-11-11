@@ -30,7 +30,7 @@
 //     authorization_url: 'https://google.com/auth' // required
 // });
 
-function yelpSearch(location, name){
+function yelpSearch(location, name, result, marker, type){
     var auth = {
         consumerKey : "9v0dToFOoyuhLJiWJfujRA",
         consumerSecret : "HCtQEDyu5Xq-Axp-1hqbEpkiBSM",
@@ -77,16 +77,21 @@ function yelpSearch(location, name){
         'url' : message.action,
         'data' : parameterMap,
         'dataType' : 'jsonp',
-        'jsonpCallback' : 'yelpCB',
-        'async' : 'false',
+        // 'jsonpCallback' : 'yelpCB',
         'cache' : true
+    }).done(function(data){
+        if(data.businesses[0] != null){
+            data = data.businesses[0];
+        }else {
+            data = null;
+        }
+        if(type = "featured"){
+            mapAddCompletedFeaturedLocation(data, result, marker);
+        }else{
+            mapAddCompletedSearchLocation(data, result, marker);
+        }
     }).fail(function(XMLHttpRequest, textStats, error){
         console.log("Error");
         console.log(error);
     });
-}
-
-function yelpCB(data){
-    console.log("Return from yelp");
-    console.log(data);
 }

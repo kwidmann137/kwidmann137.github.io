@@ -1,0 +1,37 @@
+.background{
+    background: url('./bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#naicsUL{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0px;
+}
+
+#naicsUL li{
+    padding-right: 15px;
+    list-style: none;
+}
+
+#questionContainer{
+    width: 90%;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.starImg{
+    width: 10%;
+}
+
+.favoritesImg{
+    max-width: 40px;
+}
+
+#yesBtn{
+    margin-left: 5%;
+}
+#noBtn{
+    margin-right: 5%;
+}

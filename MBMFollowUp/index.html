@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Scheduler</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="./js/followUpTemplate.js"></script>
+</head>
+<body>
+    <div class="background">
+        <div class="modal fade" id="followUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Follow Up!</h4>
+              </div>
+              <div class="modal-body" id="schedulerBody">
+                    <div class ="topContainer" id="topContainer">
+                      <p>Thank you for participating in the Business Match Maker!  We depend on your feedback to make the Matchmaker as worthwile for all businesses invlvoed.  Please take a moment to let us know about your prospects and experience.  We know your time is valuable so we will keep it short and quick.  We promise!</p>
+                    </div>
+                    <div class="questionContainer" id="questionContainer">
+                    </div>
+              </div>
+              <div class="modal-footer" id="footer">
+                <div class="row" id="button-row">
+                  <div class="col-xs-12 text-center" id="button-column">
+                      <button class="btn btn-success btn-md" id="begin">Begin</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Select One...
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" id="dropdownUL"aria-labelledby="dropdownMenu1">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+        $(".background").css("height", window.innerHeight);
+
+        $('#followUpModal').modal({
+          backdrop: 'static',
+          keyboard: false
+        })
+
+        $(window).on('load', function(){
+            $('#followUpModal').modal('show');
+        });
+    </script>
+</body>
+</html>

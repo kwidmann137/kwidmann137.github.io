@@ -27,6 +27,7 @@ body{
     background-color: white;
     z-index: 1;
     padding: 15px;
+    overflow: auto;
 }
 
 #hide-list-btn{
@@ -63,20 +64,11 @@ body{
     display: none;
 }
 
-.hide-list-btn-div{
-    width: 100%;
-}
-
-.search-results{
-    overflow: auto;
-    height: 80%;
-    margin-top: 15px;
-    max-height: 95%;
-}
 #search-results-ul{
     max-height: 100%;
     padding-left: 0px;
     display: table;
+    margin-top: 10px;
 }
 
 .search-results-li{
@@ -88,7 +80,6 @@ body{
     float: none;
     vertical-align: middle;
     padding: 0px;
-    border-bottom: 1px solid #EEEEEE;
     padding-bottom: 5px;
     margin-bottom: 5px;
 }
@@ -107,4 +98,34 @@ body{
 
 .list-buttons{
     height: 20%;
+}
+
+.yelpDetails{
+
+}
+
+.expanded{
+    animation: forwards;
+    animation-name: expand;
+    animation-duration: 1s;
+}
+
+.yelpReviewSnippet{
+    font-style: italic;
+}
+
+.border-bottom{
+    border-bottom: 1px solid #EEEEEE;
+    margin: 5px;
+}
+
+.see-more{
+    padding-left: 15px;
+    font-size: .8em;
+    color: #0B0080;
+}
+
+@keyframes expand{
+    from{height: auto;}
+    to{height: 150%;}
 }

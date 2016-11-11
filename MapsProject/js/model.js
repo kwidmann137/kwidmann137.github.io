@@ -20,15 +20,15 @@ var viewModel = function(){
         mapSearch(self.searchKeyword());
     }
 
-    self.addSearchResult = function(result, marker){
-        var photoURL = typeof result.photos !== 'undefined'
-            ? result.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
+    self.addSearchResult = function(yelpData, googleResult, marker){
+        var photoURL = typeof googleResult.photos !== 'undefined'
+            ? googleResult.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
             : ''; //alternative a "nophoto.jpg"
-        var resultObj = new location(result.formatted_address, result.geometry, result.name, photoURL, result.place_id, result.rating, result.types, marker, "search");
-        self.listLocations.push(resultObj);
+        var formattedResult = new location(googleResult.formatted_address, googleResult.geometry, googleResult.name, photoURL, googleResult.place_id, googleResult.rating, googleResult.types, marker, "search");
+        self.listLocations.push(formattedResult);
     }
 
-    var location = function(address, location, name, photoURL, id, rating, types, marker, type){
+    var location = function(yelpData, address, location, name, photoURL, id, rating, types, marker, type){
         this.address = ko.observable(address);
         this.location = ko.observable(location);
         this.name = ko.observable(name);
@@ -39,15 +39,26 @@ var viewModel = function(){
         this.marker = ko.observable(marker);
         this.match = ko.observable(true);
         this.type = ko.observable(type);
+        this.expanded = ko.observable(false);
+        this.expandDetailsText = ko.observable("See More Details...");
+        if(yelpData != null){
+            this.hasYelpDetails = ko.observable(true);
+            this.yelpNumberOfReviews = ko.observable(yelpData.review_count);
+            this.yelpReviewSnippet = ko.observable(yelpData.snippet_text);
+            this.yelpURL = ko.observable(yelpData.url);
+            this.yelpRating = ko.observable(yelpData.rating);
+        }else{
+            this.hasYelpDetails = ko.observable(false);
+        }
     }
 
-    self.addFeaturedLocation = function(result, marker){
-        var photoURL = typeof result.photos !== 'undefined'
-            ? result.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
+    self.addFeaturedLocation = function(yelpData, googleResult, marker){
+        var photoURL = typeof googleResult.photos !== 'undefined'
+            ? googleResult.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
             : ''; //alternative a "nophoto.jpg"
-        var resultObj = new location(result.formatted_address, result.geometry, result.name, photoURL, result.place_id, result.rating, result.types, marker, "featured");
-        self.featuredLocations.push(resultObj);
-        self.listLocations.push(resultObj);
+        var formattedResult = new location(yelpData, googleResult.formatted_address, googleResult.geometry, googleResult.name, photoURL, googleResult.place_id, googleResult.rating, googleResult.types, marker, "featured");
+        self.featuredLocations.push(formattedResult);
+        self.listLocations.push(formattedResult);
     }
 
     self.filterList = function(){
@@ -83,7 +94,9 @@ var viewModel = function(){
 
     self.restoreFeatured = function(){
         self.listLocations().forEach(function(v, i){
+            console.log(v.marker());
             mapClearMarker(v.marker());
+            console.log(v.marker());
         })
         self.listLocations.removeAll();
         self.listLocations(self.featuredLocations().slice(0));
@@ -96,6 +109,15 @@ var viewModel = function(){
 
     self.animateMarker = function(){
         mapAnimateMarker(this.marker(), this.type());
+    }
+
+    self.expandDetails = function(){
+        this.expanded() ? this.expanded(false) : this.expanded(true);
+        if(this.expandDetailsText() == "See More Details..."){
+            this.expandDetailsText("Hide Details...");
+        }else{
+            this.expandDetailsText("See More Details...");
+        }
     }
 
     self.noResults = function(){

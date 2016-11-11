@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">    <title></title>
 
     <!-- set viewport -->
-    <meta name="viewport" content="width=device-width, intiial-scale = 1.0">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
 
     <!-- scripts for modal -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -32,38 +31,59 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <div class="list" data-bind="css: { slide: listHidden() }">
-            <div class="hide-list-btn-div">
-                <button id="hide-list-btn" data-bind="click: toggleList">Hide</button>
-            </div>
-            <!-- <h1>List</h1> -->
-            <div class="list-buttons">
-                <input type="text" name="Search" value="Search..." data-bind="value: searchKeyword" id="search-field">
-                <button id="search-btn" data-bind="click: restoreFeatured">View Featured Locations</button>
-                <button id="search-btn" data-bind="click: search">Search Google Maps</button>
-                <button id="clear-btn" data-bind="click: filterList">Filter Current List</button>
-            </div>
-            <div class="search-results">
-                <div data-bind="if: listEmpty">
-                    No Results to Display
+        <div class="list col-xs-12" data-bind="css: { slide: listHidden() }">
+            <div class="row">
+                <div class="list-buttons col-xs-12">
+                    <button id="hide-list-btn" data-bind="click: toggleList">Hide</button>
+                    <input type="text" name="Search" value="Search..." data-bind="value: searchKeyword" id="search-field">
+                    <button id="search-btn" data-bind="click: restoreFeatured">View Featured Locations</button>
+                    <button id="search-btn" data-bind="click: search">Search Google Maps</button>
+                    <button id="clear-btn" data-bind="click: filterList">Filter Current List</button>
                 </div>
-                <ul id="search-results-ul" data-bind="foreach: listLocations">
-                    <div data-bind="visible: match, click: $parent.animateMarker">
-                        <div class="search-results-li row" data-bind="attr: {id: id}">
-                            <div class="col-xs-9">
-                                <p class="search-result-title" data-bind="text: name"></p>
-                                <p data-bind="text: address"></p>
-                            </div>
-                            <div class="col-xs-3 result-img">
-                                <img data-bind="attr: {src: photoURL}" class="img-responsive">
-                            </div>
-                        </div>
+            </div>
+            <div class="row">
+                <div class="search-results col-xs-12">
+                    <div data-bind="if: listEmpty">
+                        No Results to Display
                     </div>
-                </ul>
+                    <ul id="search-results-ul" data-bind="foreach: listLocations">
+                        <div data-bind="visible: match, click: $parent.animateMarker">
+                            <div class="search-results-li row" data-bind="attr: {id: id}">
+                                <div class="col-xs-9">
+                                    <p class="search-result-title" data-bind="text: name"></p>
+                                    <p data-bind="text: address"></p>
+                                </div>
+                                <div class="col-xs-3 result-img">
+                                    <img data-bind="attr: {src: photoURL}" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="row" data-bind="visible: hasYelpDetails()">
+                                <div class="col-xs-12">
+                                    <p class="see-more" data-bind="click: $parent.expandDetails, text: expandDetailsText()"></p>
+                                </div>
+                            </div>
+                            <div class="row yelpDetails" data-bind="if: hasYelpDetails(), visible: expanded()">
+                                <div class="col-xs-6">
+                                    <p>Yelp Rating: <span data-bind="text: yelpRating()"></span></p>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p>Yelp Reviews: <span data-bind="text: yelpNumberOfReviews"></span></p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <a data-bind="attr: {href: yelpURL}">View Yelp Page</a>
+                                </div>
+                                <div class="col-xs-12">
+                                    <p class="yelpReviewSnippet">Review: <span data-bind="text: yelpReviewSnippet"></span></p>
+                                </div>
+                            </div>
+                            <div class="border-bottom"></div>
+                        </div>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="map" id="map" class=col-xs-9>
-    </div>
+        </div>
 
     </div>
     <script type="text/javascript" src="./js/mapsJS.js"></script>
