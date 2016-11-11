@@ -39,7 +39,6 @@ function yelpSearch(location, name, result, marker, type){
     OAuth.SignatureMethod.sign(message, accessor);
 
     var parameterMap = OAuth.getParameterMap(message.parameters);
-    console.log(parameterMap);
 
     $.ajax({
         'url' : message.action,
@@ -53,7 +52,7 @@ function yelpSearch(location, name, result, marker, type){
         }else {
             data = null;
         }
-        if(type = "featured"){
+        if(type == "featured"){
             mapAddCompletedFeaturedLocation(data, result, marker);
         }else{
             mapAddCompletedSearchLocation(data, result, marker);

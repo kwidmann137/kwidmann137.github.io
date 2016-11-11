@@ -153,7 +153,7 @@ function populateInfoWindow(marker, infoWindow, yelpData, result){
 
 function mapAddCompletedFeaturedLocation(yelpData, result, marker){
     //if names don't match dont and addressed don't match, set yelp to null
-    if(yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
+    if(yelpData != null && yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
         yelpData = null;
     }
     marker.addListener('click', function(){
@@ -165,7 +165,7 @@ function mapAddCompletedFeaturedLocation(yelpData, result, marker){
 
 function mapAddCompletedSearchLocation(yelpData, result, marker){
     //if names don't match dont and addressed don't match, set yelp to null
-    if(yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
+    if(yelpData != null && yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
         yelpData = null;
     }
     marker.addListener('click', function(){

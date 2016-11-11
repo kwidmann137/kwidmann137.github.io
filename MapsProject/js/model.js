@@ -13,18 +13,21 @@ var viewModel = function(){
     }
 
     self.search = function(){
-        self.listLocations().forEach(function(v, i){
-            mapClearMarker(v.marker());
-        })
-        self.listLocations.removeAll();
-        mapSearch(self.searchKeyword());
+        if(self.searchKeyword() != ""){
+            self.listLocations().forEach(function(v, i){
+                mapClearMarker(v.marker());
+            })
+            self.listLocations.removeAll();
+            mapSearch(self.searchKeyword());
+            self.searchKeyword("");
+        }
     }
 
     self.addSearchResult = function(yelpData, googleResult, marker){
         var photoURL = typeof googleResult.photos !== 'undefined'
             ? googleResult.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
             : ''; //alternative a "nophoto.jpg"
-        var formattedResult = new location(googleResult.formatted_address, googleResult.geometry, googleResult.name, photoURL, googleResult.place_id, googleResult.rating, googleResult.types, marker, "search");
+        var formattedResult = new location(yelpData, googleResult.formatted_address, googleResult.geometry, googleResult.name, photoURL, googleResult.place_id, googleResult.rating, googleResult.types, marker, "search");
         self.listLocations.push(formattedResult);
     }
 
@@ -90,14 +93,13 @@ var viewModel = function(){
             }
         })
         self.noResults();
+        self.searchKeyword("");
     }
 
     self.restoreFeatured = function(){
         self.listLocations().forEach(function(v, i){
-            console.log(v.marker());
             mapClearMarker(v.marker());
-            console.log(v.marker());
-        })
+        });
         self.listLocations.removeAll();
         self.listLocations(self.featuredLocations().slice(0));
         self.listLocations().forEach(function(v, i){
