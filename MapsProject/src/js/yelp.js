@@ -1,3 +1,6 @@
+//builds the necessary oAuth message to get yelp search results
+//once results are achieved they are passed back to maps to verify
+//they match the location and be added to the model
 function yelpSearch(location, name, result, marker, type){
     var auth = {
         consumerKey : "9v0dToFOoyuhLJiWJfujRA",
@@ -44,7 +47,7 @@ function yelpSearch(location, name, result, marker, type){
         'url' : message.action,
         'data' : parameterMap,
         'dataType' : 'jsonp',
-        // 'jsonpCallback' : 'yelpCB',
+        //need to set cache to true to eliminate additional underscore and get a valid yelp result
         'cache' : true
     }).done(function(data){
         if(data.businesses[0] != null){

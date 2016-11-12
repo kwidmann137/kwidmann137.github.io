@@ -1,3 +1,4 @@
+//global variables for map
 var map;
 var bounds;
 var defaultFeaturedIcon;
@@ -5,8 +6,10 @@ var selectedFeaturedIcon;
 var defaultIcon;
 var selectedIcon;
 var largeInfoWindow;
+//html format for the info window
 var infoWindowContent = '<div class="row infoWindowRow"><h3>%name%</h3></div><div class="row infoWindowRow"><p class="col-xs-7">Yelp Review: %yelpReview% </p><img class="col-xs-5 img-responsive" src="%src%"></div>';
 
+//initializes the map
 function initMap(){
     window.onload = function(){
         // Create a map object and specify the DOM element for display.
@@ -34,6 +37,7 @@ function initMap(){
     }
 }
 
+//creates a featured location, sends to yelp for info
 function createFeaturedLocation(locationKeyword){
     var request ={
         query: locationKeyword,
@@ -64,6 +68,7 @@ function createFeaturedLocation(locationKeyword){
     }
 }
 
+//searches google maps for desired keyword from model,forwards to yelp for yelp info
 function mapSearch(searchKeyword){
     var request ={
         query: searchKeyword,
@@ -94,25 +99,19 @@ function mapSearch(searchKeyword){
     }
 }
 
-function makeMarkerIcon(markerColor){
-    var markerImage = new google.maps.MarkerImage('http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + markerColor + '|40|_|%E2%80%A2',
-        new google.maps.Size(21,34),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(10, 34),
-        new google.maps.Size(21, 34));
-    return markerImage;
-}
-
+//clears the marker from teh map
 function mapClearMarker(marker){
     marker.setMap(null);
 }
 
+//makes marker active on teh map
 function mapSetMarker(marker){
     marker.setMap(map);
     bounds.extend(marker.position);
     map.fitBounds(bounds);
 }
 
+//aniomtes the marker based on type, triggered by a click on the marker
 function mapAnimateMarker(marker, type){
     //here is where we will change the icon if that list item is clicked
     if(type == "search"){
@@ -132,7 +131,7 @@ function mapAnimateMarker(marker, type){
     }
 }
 
-
+//populate the info window with marker info when clicked
 function populateInfoWindow(marker, infoWindow, yelpData, result){
     if(infoWindow.marker != marker){
         infoWindow.marker = marker;
@@ -151,6 +150,8 @@ function populateInfoWindow(marker, infoWindow, yelpData, result){
     }
 };
 
+
+//adds a completed featured location to the model
 function mapAddCompletedFeaturedLocation(yelpData, result, marker){
     //if names don't match dont and addressed don't match, set yelp to null
     if(yelpData != null && yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
@@ -163,6 +164,7 @@ function mapAddCompletedFeaturedLocation(yelpData, result, marker){
     myVM.addFeaturedLocation(yelpData, result, marker);
 }
 
+//adds a compelted search location to the model
 function mapAddCompletedSearchLocation(yelpData, result, marker){
     //if names don't match dont and addressed don't match, set yelp to null
     if(yelpData != null && yelpData.name != result.name && result.formatted_address.toLowerCase().search(yelpData.location.address[0].toLowerCase()) < 0){
@@ -175,6 +177,3 @@ function mapAddCompletedSearchLocation(yelpData, result, marker){
     //add the location to the knockout array
     myVM.addSearchResult(yelpData, result, marker);
 }
-
-//search locations default to blue once clicked
-//search locations do not clear when hitting view featured locations

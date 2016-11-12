@@ -1,4 +1,5 @@
 var viewModel = function(){
+    //all variables for model
     var self = this;
     self.searchKeyword = ko.observable("");
     self.listHidden = ko.observable(true);
@@ -8,10 +9,12 @@ var viewModel = function(){
 
     self.listEmpty = ko.observable(false);
 
+    //called when hid or show list button is clicked, keeps track of if list is hidden
     self.toggleList = function(){
         self.listHidden() ? self.listHidden(false) : self.listHidden(true);
     }
 
+    //searches via googleMaps based on keyword
     self.search = function(){
         if(self.searchKeyword() != ""){
             self.listLocations().forEach(function(v, i){
@@ -23,6 +26,7 @@ var viewModel = function(){
         }
     }
 
+    //adds a search result from google maps to the list
     self.addSearchResult = function(yelpData, googleResult, marker){
         var photoURL = typeof googleResult.photos !== 'undefined'
             ? googleResult.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
@@ -31,6 +35,7 @@ var viewModel = function(){
         self.listLocations.push(formattedResult);
     }
 
+    //object to store locations info
     var location = function(yelpData, address, location, name, photoURL, id, rating, types, marker, type){
         this.address = ko.observable(address);
         this.location = ko.observable(location);
@@ -55,6 +60,7 @@ var viewModel = function(){
         }
     }
 
+    //adds a featured location to the list and to the featured location array
     self.addFeaturedLocation = function(yelpData, googleResult, marker){
         var photoURL = typeof googleResult.photos !== 'undefined'
             ? googleResult.photos[0].getUrl({'maxWidth': 150, 'maxHeight': 150})
@@ -64,6 +70,7 @@ var viewModel = function(){
         self.listLocations.push(formattedResult);
     }
 
+    //filters the current list based on keyword
     self.filterList = function(){
         self.listLocations().forEach(function(loc, i){
             //set match to false for entire list and only set true for those who match
@@ -96,6 +103,7 @@ var viewModel = function(){
         self.searchKeyword("");
     }
 
+    //clears the map and list and adds back featured locations
     self.restoreFeatured = function(){
         self.listLocations().forEach(function(v, i){
             mapClearMarker(v.marker());
@@ -109,10 +117,12 @@ var viewModel = function(){
         })
     }
 
+    //animates the corresponding marker
     self.animateMarker = function(){
         mapAnimateMarker(this.marker(), this.type());
     }
 
+    //expands the list items details if available
     self.expandDetails = function(){
         this.expanded() ? this.expanded(false) : this.expanded(true);
         if(this.expandDetailsText() == "See More Details..."){
@@ -122,6 +132,7 @@ var viewModel = function(){
         }
     }
 
+    //checks if there are no results and notifys user in the list if empty
     self.noResults = function(){
         self.listEmpty(true);
         self.listLocations().forEach(function(loc, i){
@@ -131,5 +142,6 @@ var viewModel = function(){
         });
     }
 }
+
 var myVM = new viewModel();
 ko.applyBindings(myVM);
