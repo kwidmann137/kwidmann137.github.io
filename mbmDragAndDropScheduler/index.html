@@ -68,9 +68,9 @@
                     </div>
                     <div class="scheduleItemDiv row">
                         <div class="col-xs-4">
-                            <p class="dragInstructions">Drag to desired time:</p>
+                            <p class="dragInstructions">Click on desired time slot below (the green area)</p>
                         </div>
-                        <div class="ui-widget-content draggable col-xs-4 scheduleItem" id="scheduleItem">
+                        <div class="ui-widget-content draggable col-xs-4" id="scheduleItem">
                             <p class="text-center">B12 Consulting</p>
                         </div>
                         <div class="col-xs-4"></div>
@@ -92,9 +92,7 @@
                             </tr>
                             <tr>
                                 <td class="openSlot droppable" id="day1-7:00AM-7:15AM"></td>
-                                <td class="meetingScheduledSlot" id="day2-7:00AM-7:15AM"><div class="scheduleItem">
-                            <p class="text-center">CVS</p>
-                        </div></td>
+                                <td class="meetingScheduledSlot" id="day2-7:00AM-7:15AM"></td>
                                 <td class="blockedSlot" id="day3-7:00AM-7:15AM"></td>
                             </tr>
                              <tr class="timeRow">
@@ -105,9 +103,7 @@
                             <tr>
                                 <td class="openSlot droppable" id="day1-7:20AM-7:35AM"></td>
                                 <td class="openSlot droppable" id="day2-7:20AM-7:35AM"></td>
-                                <td class="meetingScheduledSlot" id="day3-7:20AM-7:35AM"><div class="scheduleItem">
-                            <p class="text-center">Dept. of VA</p>
-                        </div></td>
+                                <td class="meetingScheduledSlot" id="day3-7:20AM-7:35AM"></td>
                             </tr>
                              <tr class="timeRow">
                                 <td>7:40AM - 7:55AM</td>
@@ -125,9 +121,7 @@
                                 <td>8:00AM - 8:15AM</td>
                             </tr>
                             <tr>
-                                <td class="meetingScheduledSlot" id="day1-8:00AM-8:15AM"><div class="scheduleItem">
-                            <p class="text-center">BurnsSearch Inc.</p>
-                        </div></td>
+                                <td class="meetingScheduledSlot" id="day1-8:00AM-8:15AM"></td>
                                 <td class="openSlot droppable" id="day2-8:00AM-8:15AM"></td>
                                 <td class="blockedSlot" id="day3-8:00AM-8:15AM"></td>
                             </tr>
@@ -137,9 +131,7 @@
                                 <td>8:20AM - 8:35AM</td>
                             </tr>
                             <tr>
-                                <td class="meetingScheduledSlot" id="day1-8:20AM-8:35AM"> <div class="scheduleItem">
-                            <p class="text-center">Progenex</p>
-                        </div></td>
+                                <td class="meetingScheduledSlot" id="day1-8:20AM-8:35AM"></td>
                                 <td class="openSlot droppable" id="day2-8:20AM-8:35AM"></td>
                                 <td class="openSlot droppable" id="day3-8:20AM-8:35AM"></td>
                             </tr>
@@ -150,9 +142,7 @@
                             </tr>
                             <tr>
                                 <td class="openSlot droppable" id="day1-8:40AM-8:55AM"></td>
-                                <td class="meetingScheduledSlot" id="day2-8:40AM-8:55AM"><div class="scheduleItem">
-                            <p class="text-center">Delta Dallas Staffing</p>
-                        </div></td>
+                                <td class="meetingScheduledSlot" id="day2-8:40AM-8:55AM"></td>
                                 <td class="openSlot droppable" id="day3-8:40AM-8:55AM"></td>
                             </tr>
                         </table>
@@ -172,42 +162,19 @@
         $( function() {
             var scheduleObj = {
                 htmlElem: $("#scheduleItem"),
-                dragged: false,
+                scheduled: false,
                 scheduledTime: "",
                 offset: $("#scheduleItem").offset(),
             }
 
-            $( "#scheduleItem" ).draggable({
-                containment: $("#schedulerBody"),
-                opacity: 0.4,
-                snap: true,
-                stop: function(event, ui){
-                    if(scheduleObj.dragged == true && $(this).offset().top != scheduleObj.offset.top && $(this).offset().left != scheduleObj.offset.left){
-                        var oldSlot = $(".selectedSlot");
-                        oldSlot.removeClass("selectedSlot");
-                        oldSlot.addClass("openSlot");
-                        scheduleObj.scheduledTime = "";
-                        scheduleObj.dragged = false;
-                    }
-                    if(scheduleObj.dragged == false){
-                        scheduleObj.htmlElem.css("left", 0);
-                        scheduleObj.htmlElem.css("top", 0);
-                        $(".schedulerWarning").css("visibility", "visible");
-                        setTimeout(function(){
-                            $(".schedulerWarning").css("visibility", "hidden");
-                        }, 5000);
-                    }
-                }
-            });
-
-            $(".droppable").droppable({
-                drop: function(event, ui){
-                    if((scheduleObj.dragged) == true){
+            $(".openSlot").on('click', function(){
+                //set scheduleObj position to this
+                if((scheduleObj.scheduled) == true){
                         var oldSlot = $(".selectedSlot");
                         oldSlot.removeClass("selectedSlot");
                         oldSlot.addClass("openSlot");
                     }else{
-                        scheduleObj.dragged = true;
+                        scheduleObj.scheduled = true;
                     }
                     $(this).removeClass("openSlot");
                     $(this).addClass("selectedSlot");
@@ -219,10 +186,62 @@
                     var slotWidth =  $(this).innerWidth();
                     var leftOffset = ((slotWidth-itemWidth)/2);
                     var topOffset = ((slotHeight-itemHeight)/2);
-                    $(ui.draggable).offset({top: $(this).offset().top + topOffset, left: $(this).offset().left + leftOffset});
-                    scheduleObj.offset = $(ui.draggable).offset();
-                }
+                    $("#scheduleItem").offset({top: $(this).offset().top + topOffset, left: $(this).offset().left + leftOffset});
+                    scheduleObj.offset = $("#scheduleItem");
             });
+
+            $(".blockedSlot, .meetingScheduledSlot").on('click', function(){
+                var oldSlot = $(".selectedSlot");
+                oldSlot.removeClass("selectedSlot");
+                oldSlot.addClass("openSlot");
+                scheduleObj.scheduledTime = "";
+                scheduleObj.scheduled = false;
+                scheduleObj.htmlElem.css("left", 0);
+                scheduleObj.htmlElem.css("top", 0);
+                $(".schedulerWarning").css("visibility", "visible");
+                setTimeout(function(){
+                    $(".schedulerWarning").css("visibility", "hidden");
+                }, 5000);
+            })
+
+            // $( "#scheduleItem" ).draggable({
+            //     containment: $("#schedulerBody"),
+            //     opacity: 0.4,
+            //     snap: true,
+            //     stop: function(event, ui){
+            //         if(scheduleObj.dragged != false && $(this).offset().top != scheduleObj.offset[0].top && $(this).offset().left != scheduleObj.offset[0].left){
+            //             var oldSlot = $(".selectedSlot");
+            //             oldSlot.removeClass("selectedSlot");
+            //             oldSlot.addClass("openSlot");
+            //             scheduleObj.scheduledTime = "";
+            //             scheduleObj.dragged = false;
+            //         }
+            //     }
+            // });
+
+            // $(".droppable").droppable({
+            //     drop: function(event, ui){
+            //         if((scheduleObj.dragged) == true){
+            //             var oldSlot = $(".selectedSlot");
+            //             oldSlot.removeClass("selectedSlot");
+            //             oldSlot.addClass("openSlot");
+            //         }else{
+            //             scheduleObj.dragged = true;
+            //         }
+            //         $(this).removeClass("openSlot");
+            //         $(this).addClass("selectedSlot");
+            //         scheduleObj.scheduledTime = $(this).attr('id');
+            //         //finally snap object to center;
+            //         var itemHeight = (scheduleObj.htmlElem).innerHeight();
+            //         var itemWidth =(scheduleObj.htmlElem).innerWidth();
+            //         var slotHeight = $(this).innerHeight();
+            //         var slotWidth =  $(this).innerWidth();
+            //         var leftOffset = ((slotWidth-itemWidth)/2);
+            //         var topOffset = ((slotHeight-itemHeight)/2);
+            //         $(ui.draggable).offset({top: $(this).offset().top + topOffset, left: $(this).offset().left + leftOffset});
+            //         scheduleObj.offset = $(ui.draggable.offset());
+            //     }
+            // });
         } );
     </script>
 </body>

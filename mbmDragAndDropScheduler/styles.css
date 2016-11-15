@@ -1,5 +1,6 @@
 .background{
     background-image: url("./bg.png");
+    background-repeat: no-repeat;
     min-height: 100%;
     min-width: 100%;
 }
@@ -111,5 +112,7 @@
     box-shadow:  -1px 1px 2px #888888,
          -2px 2px 3px #888888,
          -3px 3px 4px #888888;
+    z-index: 1;
+    background-color: #F1F1F1;
 }
 
