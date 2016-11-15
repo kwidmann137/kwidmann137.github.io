@@ -6,9 +6,10 @@
 // Additional sections could be added, but modification requried to code
 // to generate the modals
 //HTML elements for questionnaire
-var companyName = '<h3 class="text-center">%CompanyName%</h3>';
-var meetingTime = '<strong>Meeting Time: </strong> %MeetingTime% <br>';
-var naicsCodes = '<strong> NAICS Codes</strong> <ul id="naicsUL"></ul>';
+
+var companyInfo = '<div class="row"><div class="col-xs-8 companyInfo"><h3 class="text-center">%CompanyName%</h3><strong>Meeting Time: </strong> %MeetingTime% <br><strong> NAICS Codes</strong> <ul id="naicsUL"></ul></div><img class="col-xs-4 img-responsive followUpCompanyLogo" src="%src%"></img></div>';
+var meetingTime = '';
+var naicsCodes = '';
 var yesBtn = '<button class="btn btn-success btn-md" id="yesBtn">Yes</button>';
 var noBtn = '<button class="btn btn-danger btn-md" id="noBtn">No</button>';
 var nextMeetingBtn = '<button class="btn btn-primary btn-md" id="nextMeetingBtn">Next Meeting</button>';
@@ -32,25 +33,34 @@ var thankYouMessage = '<p id="thankYouMessage">Thank you for taking the time to 
 var favoritesMessage = '<p class="favoritesMessage">We noticed you wanted to continue talking with the following companies.  You can check which ones you want to add to your favorites and we will automatically add them for you so you can connect with them more easily!</p>';
 
 var rootMeeting;
-var meeting1, meeting2, meeting3;
-var rootQuestion;
-var question1, question2, question3, question4, question5, question6;
+// var meeting1, meeting2, meeting3;
+var allMeetings = [];
+var rootMeetingQuestion;
+var allMeetingQuestions = [];
+// var question1, question2, question3, question4, question5, question6;
 var rootEventQuestion;
+var allEventQuestions = [];
 
-function Meeting(company, time, codes){
+function Meeting(company, time, codes, logo, next){
     this.company = company;
     this.time = time;
     this.codes = codes;
+    this.logo = logo;
+    this.next = next;
 }
 
 Meeting.prototype.setNext = function(nextMeeting){
     this.nextMeeting = nextMeeting;
 }
 
-function Question(question, type, options){
+function Question(question, type, options, yesFollowUp, noFollowUp, next, number){
     this.question = question;
     this.type = type;
-    this.options = options
+    this.options = options;
+    this.yesFollowUp = yesFollowUp;
+    this.noFollowUp = noFollowUp;
+    this.next = next;
+    this.number = number;
 }
 
 Question.prototype.setYes = function(yes){
@@ -64,60 +74,86 @@ Question.prototype.setNext = function(next){
     this.next = next;
 }
 
-function questionSetup (){
-    //set up questions
-    question1 = new Question("Do you want to follow up with this vendor?", "yesOrNo", null);
-    rootQuestion = question1;
-    question2 = new Question("Why not?", "multiSelectWithOther", ["No Show", "Not procurement ready", "Lack necessary certifications", "Other"]);
-    question3 = new Question("Please rate the vendor.", "rating", null);
-    question4 = new Question("Do you have a current opportunity for this vendor?", "yesOrNo", null);
-    question5 = new Question("What is the value?", "dropdown", ["<10,000", "10,000-50,000", "50,000+"]);
-    question6 = new Question("Will you meet with this vendor again?", "yesOrNo", null);
+function questionSetup (srcQuestionArray, destQuestionArray){
+    //create all the questions
+    for(question in srcQuestionArray){
+        destQuestionArray.push(new Question(
+                srcQuestionArray[question].question,
+                srcQuestionArray[question].type,
+                srcQuestionArray[question].options,
+                srcQuestionArray[question].yesFollowUp,
+                srcQuestionArray[question].noFollowUp,
+                srcQuestionArray[question].next,
+                srcQuestionArray[question].number
+            ));
+    }
 
-    // link questions appropriately
-    question1.setNo(question2);
-    question1.setYes(question3);
-    question2.setYes(null);
-    question2.setNo(null);
-    question3.setNext(question4);
-    question4.setYes(question5);
-    question4.setNo(question6);
-    question5.setNext(question6);
-    question6.setYes(null);
-    question6.setNo(null);
+    //link all the questions
+    for(question in destQuestionArray){
+        if(destQuestionArray[question].type === "yesOrNo"){
+            var yesQuestion, noQuestion;
+            for(q in destQuestionArray){
+                if(destQuestionArray[q].number == destQuestionArray[question].yesFollowUp){
+                    yesQuestion = destQuestionArray[q];
+                    destQuestionArray[question].setYes(yesQuestion);
+                    continue;
+                }
+                if(destQuestionArray[q].number == destQuestionArray[question].noFollowUp){
+                    noQuestion = destQuestionArray[q];
+                    destQuestionArray[question].setNo(noQuestion);
+                    continue;
+                }
+            }
+        }else{
+            var nextQuestion;
+            for(q in destQuestionArray){
+                if(destQuestionArray[q].number == destQuestionArray[question].next){
+                    nextQuestion = destQuestionArray[q];
+                    destQuestionArray[question].setNext(nextQuestion);
+                    break;
+                }
+            }
+        }
+    }
+    return destQuestionArray[0];
+}
 
+function meetingSetup(clientMeetings){
+
+    //create meetings
+    for(meeting in clientMeetings){
+        allMeetings.push(new Meeting(
+            clientMeetings[meeting].company,
+            clientMeetings[meeting].time,
+            clientMeetings[meeting].NAICS,
+            clientMeetings[meeting].logo
+        ));
+    }
+
+    //order meetings
+    for(var i = 0; i < allMeetings.length-1; i++){
+        allMeetings[i].setNext(allMeetings[i+1]);
+    }
+
+    return allMeetings[0];
+    // allMeetings[allMeetings.length-1].setNext(null);
     //set up meetings
-    meeting1 = new Meeting("Test Company 1", "8:00AM", ["11111", "22222", "33333"]);
-    rootMeeting = meeting1;
-    meeting2 = new Meeting("Test Company 2", "9:00AM", ["22222", "33333"]);
-    meeting3 = new Meeting("Test Company 3", "9:30AM", ["44444"]);
-    meeting1.setNext(meeting2);
-    meeting2.setNext(meeting3);
-
-    eventQuestion1 = new Question("Were your expectations met?", "yesOrNo", null);
-    rootEventQuestion = eventQuestion1;
-    eventQuestion2 = new Question("Was the online business matchmaking site user-friendly?", null);
-    eventQuestion3 = new Question("Was the event well organized", "yesOrNo", null);
-    eventQuestion4 = new Question("How would you rate teh overall event?", "rating", null);
-    eventQuestion5 = new Question("Would you participate in a similar event in the future?", "yesOrNo", null);
-
-    eventQuestion1.setYes(eventQuestion2);
-    eventQuestion1.setNo(eventQuestion2);
-    eventQuestion2.setYes(eventQuestion3);
-    eventQuestion2.setNo(eventQuestion3);
-    eventQuestion3.setYes(eventQuestion4);
-    eventQuestion3.setNo(eventQuestion4);
-    eventQuestion4.setNext(eventQuestion5);
-    eventQuestion5.setYes(null);
-    eventQuestion5.setNo(null);
-
-
+    // meeting1 = new Meeting("Test Company 1", "8:00AM", ["11111", "22222", "33333"]);
+    // rootMeeting = meeting1;
+    // meeting2 = new Meeting("Test Company 2", "9:00AM", ["22222", "33333"]);
+    // meeting3 = new Meeting("Test Company 3", "9:30AM", ["44444"]);
+    // meeting1.setNext(meeting2);
+    // meeting2.setNext(meeting3);
 }
 
 $(function(){
-    questionSetup();
+    rootMeetingQuestion = questionSetup(questions.meetingFollowUp, allMeetingQuestions);
+    console.log(rootMeetingQuestion);
+    rootEventQuestion = questionSetup(questions.eventFollowUp, allEventQuestions);
+    console.log(rootEventQuestion);
+    rootMeeting = meetingSetup(client.meetings);
 
-    var currQuestion = rootQuestion;
+    var currQuestion = rootMeetingQuestion;
     var currMeeting = rootMeeting;
     var currEventQuestion = rootEventQuestion;
     var onIntro = true;
@@ -179,16 +215,15 @@ $(function(){
         //change out top container with first company info
         topContainer.html('');
         questionContainer.html('');
-        var formattedName = companyName.replace('%CompanyName%', currMeeting.company);
-        var formattedTime = meetingTime.replace("%MeetingTime%", currMeeting.time);
-        topContainer.append(formattedName);
-        topContainer.append(formattedTime);
-        topContainer.append(naicsCodes);
+        var formattedInfo = companyInfo.replace('%CompanyName%', currMeeting.company);
+        formattedInfo = formattedInfo.replace("%src%", currMeeting.logo)
+        formattedInfo = formattedInfo.replace("%MeetingTime%", currMeeting.time);
+        topContainer.append(formattedInfo);
         for(code in currMeeting.codes){
             $("#naicsUL").append('<li>' + currMeeting.codes[code] +'</li>');
         }
 
-        currQuestion = rootQuestion;
+        currQuestion = rootMeetingQuestion;
 
         //set first question
         renderQuestion();

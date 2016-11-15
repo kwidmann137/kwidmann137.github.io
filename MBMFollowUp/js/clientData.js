@@ -2,24 +2,40 @@
 // Should be easily attainable from the database
 var client = {
     "meetings" : [
-        //template
         // {
-        //     "company" : "company name"
+        //     "company" : "",
+        //     "logo" : "",
+        //     "time" : "",
+        //     "NAICS" : [
+        //         "",
+        //     ]
         // },
         {
-            "company" : "test company 1",
+            "company" : "A&R Telecom, Inc.",
+            "logo" : "https://cdn.mybusinessmatches.com/media/filter/m/img/570e83ed71692.gif",
+            "time" : "8:00AM",
+            "NAICS" : [
+                "212321",
+                "236118",
+                "321114"
+            ]
         },
         {
-            "company" : "test company 2",
+            "company" : "B-BAM!",
+            "logo" : "https://cdn.mybusinessmatches.com/media/filter/m/img/5785aa216d4bc.png",
+            "time" : "9:00AM",
+            "NAICS" : [
+                "323120",
+                "423830",
+            ]
         },
         {
-            "company" : "test company 3",
-        },
-        {
-            "company" : "test company 4",
-        },
-        {
-            "company" : "test company 5",
+            "company" : "CEC Business Solutions",
+            "logo" : "https://cdn.mybusinessmatches.com/media/filter/m/img/56e871f663624.jpg",
+            "time" : "9:15AM",
+            "NAICS" : [
+                "541810",
+            ]
         },
     ]
 }

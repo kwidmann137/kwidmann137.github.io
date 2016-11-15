@@ -1,0 +1,4 @@
+KNOWN ISSUES:
+Need to check for valid input before continuing?
+    Should button be disabled or simply prompt the user?
+Needs more styling, not a distinct difference between the question and company info or message at the top
