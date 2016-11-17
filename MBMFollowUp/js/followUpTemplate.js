@@ -33,11 +33,9 @@ var thankYouMessage = '<p id="thankYouMessage">Thank you for taking the time to 
 var favoritesMessage = '<p class="favoritesMessage">We noticed you wanted to continue talking with the following companies.  You can check which ones you want to add to your favorites and we will automatically add them for you so you can connect with them more easily!</p>';
 
 var rootMeeting;
-// var meeting1, meeting2, meeting3;
 var allMeetings = [];
 var rootMeetingQuestion;
 var allMeetingQuestions = [];
-// var question1, question2, question3, question4, question5, question6;
 var rootEventQuestion;
 var allEventQuestions = [];
 
