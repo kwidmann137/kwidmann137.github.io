@@ -7,9 +7,12 @@
 // to generate the modals
 //HTML elements for questionnaire
 
+//old
 var companyInfo = '<div class="row"><div class="col-xs-8 companyInfo"><h3 class="text-center">%CompanyName%</h3><strong>Meeting Time: </strong> %MeetingTime% <br><strong> NAICS Codes</strong> <ul id="naicsUL"></ul></div><img class="col-xs-4 img-responsive followUpCompanyLogo" src="%src%"></img></div>';
 var meetingTime = '';
 var naicsCodes = '';
+
+//current
 var yesBtn = '<button class="btn btn-success btn-md" id="yesBtn">Yes</button>';
 var noBtn = '<button class="btn btn-danger btn-md" id="noBtn">No</button>';
 var nextMeetingBtn = '<button class="btn btn-primary btn-md" id="nextMeetingBtn">Next Meeting</button>';
@@ -17,9 +20,8 @@ var nextQuestionBtn = '<button class="btn btn-success btn-md" id="nextQuestionBt
 var rateEventBtn = '<button class="btn btn-primary btn-md" id="rateEventBtn">Rate Event</button>';
 var saveBtn = '<button class="btn btn-success btn-md" id="saveBtn">Save</button>';
 var notSelectedStarImg = '<img src="./images/notSelectedStar.png" class="starImg" id="star%num%" alt=""></img>';
-// var selectedStarImg = '<img src="./images/selectedStar.png" class="starImg" id="star%num%" alt=""></img>';
+
 var favoritesNotSelectedImg = '<img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg" alt=""></img>';
-// var favoritesSelectedImg = '<img src="./images/favoritesSelected.png" class="favoritesImg" id="favoritesImg" alt=""></img>';
 var favoritesDiv = '<div class="row favorites"><div class="col-xs-0 col-sm-1 col-md-2"></div><div class="col-xs-8 col-sm-7 col-md-5 text-center">%companyName%</div><div class="col-xs-0 col-sm-2 col-md-3"> <img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg%num%" alt=""></img></div><div class="col-xs-0 col-sm-1 col-md-2"></div></div>';
 var questionDiv = '<div class="question">%question%</div>'
 var textArea = '<textarea name="paragraph_text" class="form-control" rows="5" id="textArea" disabled></textarea>';
@@ -32,6 +34,12 @@ var rateEventMessage = '<p class="">Thank you for rating your meetings.  We are 
 var thankYouMessage = '<p id="thankYouMessage">Thank you for taking the time to provide us with this valuable feedback.  We hope to see you at another event soon!</p>';
 var favoritesMessage = '<p class="favoritesMessage">We noticed you wanted to continue talking with the following companies.  You can check which ones you want to add to your favorites and we will automatically add them for you so you can connect with them more easily!</p>';
 
+//new
+var companyName = '<div class="row"><div class="col-xs-2"></div><div class="col-xs-8 companyInfo text-center"><h3 class="company-name" id="meeting-company-name">%name%</h3><p class="company-city">%city%, %state%</p><button class="btn btn-md btn-primary" type="button" data-toggle="collapse" data-target="#company-profile-div">View Vendor Profile</button></div></div>'
+var companyLogo = '<div class="row"><div class="col-xs-9"></div><div class="col-xs-3"><img class="img-responsive company-logo" src="%src%"></div></div>';
+var meetingHeader = '<h2 class="modal-title text-center" id="myModalLabel">Vendor Follow Ups</h2><h4 class="header-sub-title text-center" id="header-sub-title">Meeting %num%  :  %time%</h4>';
+var companyProfileDiv = '<div class="row"><div class="collapse col-xs-12" id="company-profile-div"><div class="card company-profile" id="company-profile"><p>Test</p></div></div></div>';
+
 var rootMeeting;
 var allMeetings = [];
 var rootMeetingQuestion;
@@ -39,12 +47,13 @@ var allMeetingQuestions = [];
 var rootEventQuestion;
 var allEventQuestions = [];
 
-function Meeting(company, time, codes, logo, next){
+function Meeting(company, time, logo, city, state, description){
     this.company = company;
     this.time = time;
-    this.codes = codes;
     this.logo = logo;
-    this.next = next;
+    this.city = city;
+    this.state = state;
+    this.description = description;
 }
 
 Meeting.prototype.setNext = function(nextMeeting){
@@ -123,10 +132,14 @@ function meetingSetup(clientMeetings){
         allMeetings.push(new Meeting(
             clientMeetings[meeting].company,
             clientMeetings[meeting].time,
-            clientMeetings[meeting].NAICS,
-            clientMeetings[meeting].logo
+            clientMeetings[meeting].logo,
+            clientMeetings[meeting].city,
+            clientMeetings[meeting].state,
+            clientMeetings[meeting].description
         ));
     }
+
+    console.log(allMeetings);
 
     //order meetings
     for(var i = 0; i < allMeetings.length-1; i++){
@@ -159,18 +172,21 @@ $(function(){
     var topContainer = $("#topContainer");
     var questionContainer = $("#questionContainer");
     var footer = $("#button-column");
+    var header = $(".modal-header");
     var yesButton, noButton;
     var ratingSet = false;
     var currentRating = 0;
-    var favoritesSelected = false;
-    var answers = [];
+    var meetingAnswers = [];
+    var eventAnswers = [];
     var favorites = [];
+    var selectedFavorites = [];
     var selectedRadio = null;
     var selectedDropdown = null;
+    var meetingNum = 0;
     $("#begin").on('click', function(){
-        renderNewMeeting();
-        //set on meetings to true;
         onMeetings = true;
+        console.log(currMeeting);
+        renderNewMeeting();
     });
 
     function renderQuestion(){
@@ -208,16 +224,22 @@ $(function(){
     }
 
     function renderNewMeeting(){
+        meetingNum++;
+        //change out the header
+        header.html('');
+        var formattedHeader = meetingHeader.replace("%num%", meetingNum);
+        formattedHeader = formattedHeader.replace("%time%", currMeeting.time);
+        header.append(formattedHeader);
         //change out top container with first company info
         topContainer.html('');
         questionContainer.html('');
-        var formattedInfo = companyInfo.replace('%CompanyName%', currMeeting.company);
-        formattedInfo = formattedInfo.replace("%src%", currMeeting.logo)
-        formattedInfo = formattedInfo.replace("%MeetingTime%", currMeeting.time);
+        var formattedLogo = companyLogo.replace("%src", currMeeting.logo);
+        topContainer.append(formattedLogo);
+        var formattedInfo = companyName.replace('%name%', currMeeting.company);
+        formattedInfo = formattedInfo.replace("%city%", currMeeting.city);
+        formattedInfo = formattedInfo.replace("%state%", currMeeting.state);
         topContainer.append(formattedInfo);
-        for(code in currMeeting.codes){
-            $("#naicsUL").append('<li>' + currMeeting.codes[code] +'</li>');
-        }
+        topContainer.append(companyProfileDiv);
 
         currQuestion = rootMeetingQuestion;
 
@@ -238,14 +260,18 @@ $(function(){
                 favorites.push(currMeeting.company);
             }
             if(onMeetings){
-                answers.push([currMeeting.company, currQuestion.question, "yes"]);
+                meetingAnswers.push([currMeeting.company, currQuestion.question, "yes"]);
+            }else if(onEvent){
+                eventAnswers.push([currQuestion.question, "yes"])
             }
             currQuestion = currQuestion.yes;
             renderQuestion();
         })
         noButton.on('click', function(){
             if(onMeetings){
-                answers.push([currMeeting.company, currQuestion.question, "no"]);
+                meetingAnswers.push([currMeeting.company, currQuestion.question, "no"]);
+            }else if(onEvent){
+                eventAnswers.push([currQuestion.question, "no"])
             }
             currQuestion = currQuestion.no;
             renderQuestion();
@@ -278,7 +304,11 @@ $(function(){
                 if(selectedDropdown === null){
                     alert("You must select an item from dropdown to proceed.");
                 }else{
-                    answers.push([currMeeting.company, currQuestion.question, selectedDropdown]);
+                    if(onMeetings){
+                        meetingAnswers.push([currMeeting.company, currQuestion.question, selectedDropdown]);
+                    }else if(onEvent){
+                        eventAnswers.push([currQuestion.question, selectedDropdown]);
+                    }
                     selectedDropdown = null;
                     questionAnswered = true;
                 }
@@ -292,11 +322,19 @@ $(function(){
                     if(text === null || text == "" ){
                         alert("Please fill in the text box to explain other.");
                     }else{
-                        answers.push([currMeeting.company, currQuestion.question, selectedRadio, text]);
+                        if(onMeetings){
+                            meetingAnswers.push([currMeeting.company, currQuestion.question, selectedRadio, text]);
+                        }else if(onEvent){
+                            eventAnswers.push([currQuestion.question, selectedRadio, text]);
+                        }
                         questionAnswered = true;
                     }
                 }else{
-                    answers.push([currMeeting.company, currQuestion.question, selectedRadio]);
+                    if(onMeetings){
+                        meetingAnswers.push([currMeeting.company, currQuestion.question, selectedRadio]);
+                    }else if(onEvent){
+                        eventAnswers.push([currQuestion.question, selectedRadio]);
+                    }
                     selectedRadio = null;
                     questionAnswered = true;
                 }
@@ -306,10 +344,10 @@ $(function(){
                     alert("Please select a rating.");
                 }else{
                     if(onMeetings){
-                        answers.push([currMeeting.company, currQuestion.question, currentRating]);
+                        meetingAnswers.push([currMeeting.company, currQuestion.question, currentRating]);
                     }
                     if(onEvent){
-                        answers.push([currQuestion, currentRating]);
+                        eventAnswers.push([currQuestion.question, currentRating]);
                     }
                     questionAnswered = true;
                 }
@@ -336,7 +374,8 @@ $(function(){
         footer.append(saveBtn);
         $("#saveBtn").on('click', function(){
             console.log("save");
-            console.log(answers);
+            console.log(meetingAnswers);
+            console.log(eventAnswers);
         });
     }
 
@@ -453,8 +492,13 @@ $(function(){
                     }else{
                         $(this).attr("src", "./images/favoritesNotSelected.png");
                     }
+
                 });
             }
         }
+    }
+
+    function getSelectedFavorites(){
+        $("")
     }
 });

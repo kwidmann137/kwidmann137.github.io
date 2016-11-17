@@ -37,3 +37,18 @@
 #noBtn{
     margin-right: 5%;
 }
+
+.card{
+    margin: 25px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.company-logo{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    max-width: 100%;
+    max-height: 150px;
+}
