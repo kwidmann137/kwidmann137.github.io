@@ -20,7 +20,7 @@ var notSelectedStarImg = '<img src="./images/notSelectedStar.png" class="starImg
 // var selectedStarImg = '<img src="./images/selectedStar.png" class="starImg" id="star%num%" alt=""></img>';
 var favoritesNotSelectedImg = '<img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg" alt=""></img>';
 // var favoritesSelectedImg = '<img src="./images/favoritesSelected.png" class="favoritesImg" id="favoritesImg" alt=""></img>';
-var favoritesDiv = '<div class="row favorites"><div class="col-xs-10 text-center">%companyName%</div><div class="col-xs-2" <img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg%num%" alt=""></img></div></div>';
+var favoritesDiv = '<div class="row favorites"><div class="col-xs-0 col-sm-1 col-md-2"></div><div class="col-xs-8 col-sm-7 col-md-5 text-center">%companyName%</div><div class="col-xs-0 col-sm-2 col-md-3"> <img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg%num%" alt=""></img></div><div class="col-xs-0 col-sm-1 col-md-2"></div></div>';
 var questionDiv = '<div class="question">%question%</div>'
 var textArea = '<textarea name="paragraph_text" class="form-control" rows="5" id="textArea" disabled></textarea>';
 var dropdownForm = '<select class="form-control" id="dropdownForm"></select>';
