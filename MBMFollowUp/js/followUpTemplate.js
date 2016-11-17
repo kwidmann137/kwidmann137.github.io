@@ -103,12 +103,10 @@ function questionSetup (srcQuestionArray, destQuestionArray){
                 if(destQuestionArray[q].number == destQuestionArray[question].yesFollowUp){
                     yesQuestion = destQuestionArray[q];
                     destQuestionArray[question].setYes(yesQuestion);
-                    continue;
                 }
                 if(destQuestionArray[q].number == destQuestionArray[question].noFollowUp){
                     noQuestion = destQuestionArray[q];
                     destQuestionArray[question].setNo(noQuestion);
-                    continue;
                 }
             }
         }else{
@@ -138,8 +136,6 @@ function meetingSetup(clientMeetings){
             clientMeetings[meeting].description
         ));
     }
-
-    console.log(allMeetings);
 
     //order meetings
     for(var i = 0; i < allMeetings.length-1; i++){
@@ -185,7 +181,6 @@ $(function(){
     var meetingNum = 0;
     $("#begin").on('click', function(){
         onMeetings = true;
-        console.log(currMeeting);
         renderNewMeeting();
     });
 
@@ -264,7 +259,11 @@ $(function(){
             }else if(onEvent){
                 eventAnswers.push([currQuestion.question, "yes"])
             }
+            console.log("Before : ");
+            console.log(currQuestion);
             currQuestion = currQuestion.yes;
+            console.log("Ater : ");
+            console.log(currQuestion);
             renderQuestion();
         })
         noButton.on('click', function(){
@@ -273,7 +272,11 @@ $(function(){
             }else if(onEvent){
                 eventAnswers.push([currQuestion.question, "no"])
             }
+            console.log("Before : ");
+            console.log(currQuestion);
             currQuestion = currQuestion.no;
+            console.log("Ater : ");
+            console.log(currQuestion);
             renderQuestion();
         });
     }
@@ -365,6 +368,8 @@ $(function(){
         $("#rateEventBtn").on('click', function(){
             renderRateEventTop();
             currQuestion = rootEventQuestion;
+            console.log("just set root Event question");
+            console.log(currQuestion);
             renderQuestion();
         });
     }
