@@ -22,16 +22,16 @@ var client = {
             "company" : "B-BAM!",
             "logo" : "https://cdn.mybusinessmatches.com/media/filter/m/img/5785aa216d4bc.png",
             "time" : "9:00AM",
-            "city" : "Bellflower",
-            "state" : "CA",
+            "city" : "Seattle",
+            "state" : "WA",
             "description" : ""
         },
         {
             "company" : "CEC Business Solutions",
             "logo" : "https://cdn.mybusinessmatches.com/media/filter/m/img/56e871f663624.jpg",
             "time" : "9:15AM",
-            "city" : "Bellflower",
-            "state" : "CA",
+            "city" : "Natick",
+            "state" : "MA",
             "description" : ""
         },
     ]
