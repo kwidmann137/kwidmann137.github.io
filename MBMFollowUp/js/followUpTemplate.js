@@ -36,7 +36,7 @@ var favoritesMessage = '<p class="favoritesMessage">We noticed you wanted to con
 
 //new
 var companyName = '<div class="row"><div class="col-xs-2"></div><div class="col-xs-8 companyInfo text-center"><h3 class="company-name" id="meeting-company-name">%name%</h3><p class="company-city">%city%, %state%</p><button class="btn btn-md btn-primary" type="button" data-toggle="collapse" data-target="#company-profile-div">View Vendor Profile</button></div></div>'
-var companyLogo = '<div class="row"><div class="col-xs-9"></div><div class="col-xs-3"><img class="img-responsive company-logo" src="%src%"></div></div>';
+var companyLogo = '<div class="row"><div class="col-xs-9"></div><div class="col-xs-3"><div class="company-logo"><img class="img-responsive" src="%src%"></div></div></div>';
 var meetingHeader = '<h2 class="modal-title text-center" id="myModalLabel">Vendor Follow Ups</h2><h4 class="header-sub-title text-center" id="header-sub-title">Meeting %num%  :  %time%</h4>';
 var companyProfileDiv = '<div class="row"><div class="collapse col-xs-12" id="company-profile-div"><div class="card company-profile" id="company-profile"><p>Test</p></div></div></div>';
 var eventHeader = '<h2 class="modal-title text-center" id="myModalLabel">Event Follow Up</h2>';
