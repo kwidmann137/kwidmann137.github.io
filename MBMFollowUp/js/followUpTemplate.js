@@ -39,6 +39,7 @@ var companyName = '<div class="row"><div class="col-xs-2"></div><div class="col-
 var companyLogo = '<div class="row"><div class="col-xs-9"></div><div class="col-xs-3"><img class="img-responsive company-logo" src="%src%"></div></div>';
 var meetingHeader = '<h2 class="modal-title text-center" id="myModalLabel">Vendor Follow Ups</h2><h4 class="header-sub-title text-center" id="header-sub-title">Meeting %num%  :  %time%</h4>';
 var companyProfileDiv = '<div class="row"><div class="collapse col-xs-12" id="company-profile-div"><div class="card company-profile" id="company-profile"><p>Test</p></div></div></div>';
+var eventHeader = '<h2 class="modal-title text-center" id="myModalLabel">Event Follow Up</h2>';
 
 var rootMeeting;
 var allMeetings = [];
@@ -398,6 +399,9 @@ $(function(){
     }
 
     function renderRateEventTop(){
+        //set header
+        header.html('');
+        header.append(eventHeader);
         //clear top container
         topContainer.html('');
         questionContainer.html('');
