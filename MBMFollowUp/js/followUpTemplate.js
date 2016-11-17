@@ -20,7 +20,7 @@ var notSelectedStarImg = '<img src="./images/notSelectedStar.png" class="starImg
 // var selectedStarImg = '<img src="./images/selectedStar.png" class="starImg" id="star%num%" alt=""></img>';
 var favoritesNotSelectedImg = '<img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg" alt=""></img>';
 // var favoritesSelectedImg = '<img src="./images/favoritesSelected.png" class="favoritesImg" id="favoritesImg" alt=""></img>';
-var favoritesDiv = '<div class="row"><div class="col-xs-12 favorites text-center">%companyName% <img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg%num%" alt=""></img></div></div>';
+var favoritesDiv = '<div class="row favorites"><div class="col-xs-10 text-center">%companyName%</div><div class="col-xs-2" <img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg%num%" alt=""></img></div></div>';
 var questionDiv = '<div class="question">%question%</div>'
 var textArea = '<textarea name="paragraph_text" class="form-control" rows="5" id="textArea" disabled></textarea>';
 var dropdownForm = '<select class="form-control" id="dropdownForm"></select>';
@@ -146,9 +146,7 @@ function meetingSetup(clientMeetings){
 
 $(function(){
     rootMeetingQuestion = questionSetup(questions.meetingFollowUp, allMeetingQuestions);
-    console.log(rootMeetingQuestion);
     rootEventQuestion = questionSetup(questions.eventFollowUp, allEventQuestions);
-    console.log(rootEventQuestion);
     rootMeeting = meetingSetup(client.meetings);
 
     var currQuestion = rootMeetingQuestion;
@@ -260,8 +258,6 @@ $(function(){
                 onMeetings = false;
                 onEvent = true;
                 //render rateEvent Btn
-                console.log(answers);
-                console.log(favorites);
                 renderRateEventBtn();
         }else{
             footer.html('');
@@ -276,26 +272,52 @@ $(function(){
         footer.html('');
         footer.append(nextQuestionBtn);
         $("#nextQuestionBtn").on('click', function(){
+            var questionAnswered = false;
             if(currQuestion.type == "dropdown"){
                 //get currently selected answer
-                answers.push([currMeeting.company, currQuestion.question, selectedDropdown]);
-                selectedDropdown = null;
+                if(selectedDropdown === null){
+                    alert("You must select an item from dropdown to proceed.");
+                }else{
+                    answers.push([currMeeting.company, currQuestion.question, selectedDropdown]);
+                    selectedDropdown = null;
+                    questionAnswered = true;
+                }
             }else if(currQuestion.type == "multiSelectWithOther"){
                 //get currently selected answer and other
-                if(selectedRadio == "Other"){
+                if(selectedRadio === null){
+                    alert("You must choose an option to continue.")
+                }
+                else if(selectedRadio == "Other"){
                     var text = $("#textArea").val();
-                    answers.push([currMeeting.company, currQuestion.question, selectedRadio, text]);
+                    if(text === null || text == "" ){
+                        alert("Please fill in the text box to explain other.");
+                    }else{
+                        answers.push([currMeeting.company, currQuestion.question, selectedRadio, text]);
+                        questionAnswered = true;
+                    }
                 }else{
                     answers.push([currMeeting.company, currQuestion.question, selectedRadio]);
                     selectedRadio = null;
+                    questionAnswered = true;
                 }
             }else if(currQuestion.type == "rating"){
-                if(onMeetings){
-                    answers.push([currMeeting.company, currQuestion.question, currentRating]);
+                if(!ratingSet){
+                    // || typeof currentRating == 'undefined'
+                    alert("Please select a rating.");
+                }else{
+                    if(onMeetings){
+                        answers.push([currMeeting.company, currQuestion.question, currentRating]);
+                    }
+                    if(onEvent){
+                        answers.push([currQuestion, currentRating]);
+                    }
+                    questionAnswered = true;
                 }
             }
-            currQuestion = currQuestion.next;
-            renderQuestion();
+            if(questionAnswered){
+                currQuestion = currQuestion.next;
+                renderQuestion();
+            }
         });
     }
 
@@ -314,6 +336,7 @@ $(function(){
         footer.append(saveBtn);
         $("#saveBtn").on('click', function(){
             console.log("save");
+            console.log(answers);
         });
     }
 
@@ -354,7 +377,6 @@ $(function(){
         }else{
             var start = 0;
         }
-        console.log("Clearing stars " + start + " through " + 4);
         var index = (this.id).substring((this.id).length-1);
         for(var c = start; c<5; c++){
             var currStar = $("#star" + c);
@@ -372,8 +394,6 @@ $(function(){
             var currStar = $("#star" + c);
             currStar.attr("src", "./images/notSelectedStar.png");
         }
-        console.log("Current Rating: " + currentRating);
-        // ratingSet ? ratingSet = false : ratingSet = true;
     }
 
     function renderAllMultiSelectWithOtherOptions(){
@@ -408,8 +428,7 @@ $(function(){
             $("#dropdownForm").append(formattedItem);
         }
         $('#dropdownForm').change(function () {
-            var selectedOption = $(this).find("option:selected").text();
-            selectedDropdown = selectedOption;
+            selectedDropdown = $(this).find("option:selected").text();
         });
     }
 
