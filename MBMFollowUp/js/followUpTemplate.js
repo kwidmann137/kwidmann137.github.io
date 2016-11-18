@@ -40,6 +40,8 @@ var companyLogo = '<div class="row"><div class="col-xs-9"></div><div class="col-
 var meetingHeader = '<h2 class="modal-title text-center" id="myModalLabel">Vendor Follow Ups</h2><h4 class="header-sub-title text-center" id="header-sub-title">Meeting %num%  :  %time%</h4>';
 var companyProfileDiv = '<div class="row"><div class="collapse col-xs-12" id="company-profile-div"><div class="card company-profile" id="company-profile"><p>Test</p></div></div></div>';
 var eventHeader = '<h2 class="modal-title text-center" id="myModalLabel">Event Follow Up</h2>';
+var progressBarSection = '<div class="progress-bar-section" id="progress-bar-section-%num%"></div>';
+var progressBarDiv = '<div class="row" id="progress-bar"></div>';
 
 var rootMeeting;
 var allMeetings = [];
@@ -159,6 +161,10 @@ $(function(){
     rootEventQuestion = questionSetup(questions.eventFollowUp, allEventQuestions);
     rootMeeting = meetingSetup(client.meetings);
 
+    var progressBarLength = (allMeetingQuestions.length*allMeetings.length) + allEventQuestions.length;
+    var currentProgress = 0;
+    var progressBarSectionLength = 100/progressBarLength;
+
     var currQuestion = rootMeetingQuestion;
     var currMeeting = rootMeeting;
     var currEventQuestion = rootEventQuestion;
@@ -168,8 +174,10 @@ $(function(){
     var onEvent = false;
     var topContainer = $("#topContainer");
     var questionContainer = $("#questionContainer");
-    var footer = $("#button-column");
+    var footer = $("#footer");
+    var buttonRow = $("#button-column");
     var header = $(".modal-header");
+    var progressBar;
     var yesButton, noButton;
     var ratingSet = false;
     var currentRating = 0;
@@ -183,6 +191,7 @@ $(function(){
     $("#begin").on('click', function(){
         onMeetings = true;
         renderNewMeeting();
+        renderProgressBar();
     });
 
     function renderQuestion(){
@@ -217,6 +226,23 @@ $(function(){
                 renderNextQuestionBtn();
             }
         }
+        updateProgressBar();
+    }
+
+    function renderProgressBar(){
+        footer.append(progressBarDiv);
+        progressBar = $("#progress-bar");
+        for(var i = 0; i < progressBarLength; i++){
+            var formattedProgressBarSection = progressBarSection.replace("%num%", i);
+            progressBar.append(formattedProgressBarSection);
+        }
+        $(".progress-bar-section").css("width",progressBarSectionLength+"%");
+    }
+
+    function updateProgressBar(){
+        for(var i = 0; i<currentProgress; i++){
+            $("#progress-bar-section-" + i).addClass("progress-bar-section-completed");
+        }
     }
 
     function renderNewMeeting(){
@@ -244,10 +270,10 @@ $(function(){
     }
 
     function renderYesOrNoBtns(){
-        footer.html('');
+        buttonRow.html('');
          //change out buttons for yes and no (first question should always be yes/no)
-        footer.append(noBtn);
-        footer.append(yesBtn);
+        buttonRow.append(noBtn);
+        buttonRow.append(yesBtn);
         yesButton = $("#yesBtn");
         noButton = $("#noBtn");
 
@@ -260,10 +286,8 @@ $(function(){
             }else if(onEvent){
                 eventAnswers.push([currQuestion.question, "yes"])
             }
-            console.log("Before : ");
-            console.log(currQuestion);
             currQuestion = currQuestion.yes;
-            console.log("Ater : ");
+            currentProgress++;
             console.log(currQuestion);
             renderQuestion();
         })
@@ -273,11 +297,8 @@ $(function(){
             }else if(onEvent){
                 eventAnswers.push([currQuestion.question, "no"])
             }
-            console.log("Before : ");
-            console.log(currQuestion);
             currQuestion = currQuestion.no;
-            console.log("Ater : ");
-            console.log(currQuestion);
+            currentProgress++;
             renderQuestion();
         });
     }
@@ -290,17 +311,21 @@ $(function(){
                 //render rateEvent Btn
                 renderRateEventBtn();
         }else{
-            footer.html('');
-            footer.append(nextMeetingBtn);
+            buttonRow.html('');
+            buttonRow.append(nextMeetingBtn);
             $("#nextMeetingBtn").on('click', function(){
+                console.log(currentProgress);
+                console.log(Math.floor(currentProgress/allMeetingQuestions.length));
+                currentProgress = Math.floor(currentProgress/allMeetingQuestions.length)+allMeetingQuestions.length;
+                console.log(currentProgress);
                 renderNewMeeting();
             });
         }
     }
 
     function renderNextQuestionBtn(){
-        footer.html('');
-        footer.append(nextQuestionBtn);
+        buttonRow.html('');
+        buttonRow.append(nextQuestionBtn);
         $("#nextQuestionBtn").on('click', function(){
             var questionAnswered = false;
             if(currQuestion.type == "dropdown"){
@@ -358,26 +383,25 @@ $(function(){
             }
             if(questionAnswered){
                 currQuestion = currQuestion.next;
+                currentProgress++;
                 renderQuestion();
             }
         });
     }
 
     function renderRateEventBtn(){
-        footer.html('');
-        footer.append(rateEventBtn);
+        buttonRow.html('');
+        buttonRow.append(rateEventBtn);
         $("#rateEventBtn").on('click', function(){
             renderRateEventTop();
             currQuestion = rootEventQuestion;
-            console.log("just set root Event question");
-            console.log(currQuestion);
             renderQuestion();
         });
     }
 
     function renderSaveBtn(){
-        footer.html('');
-        footer.append(saveBtn);
+        buttonRow.html('');
+        buttonRow.append(saveBtn);
         $("#saveBtn").on('click', function(){
             console.log("save");
             console.log(meetingAnswers);

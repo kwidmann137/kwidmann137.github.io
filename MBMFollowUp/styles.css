@@ -60,3 +60,19 @@
 .company-logo img{
     padding: 10px;
 }
+
+#progress-bar{
+    margin: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.progress-bar-section{
+    height: 15px;
+    float: left;
+}
+
+.progress-bar-section-completed{
+    background-color: green;
+    box-shadow: 1px 1px 5px;
+}
