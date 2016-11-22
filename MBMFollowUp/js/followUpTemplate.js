@@ -238,7 +238,9 @@ $(function(){
         //change out top container with first company info
         topContainer.html('');
         questionContainer.html('');
-        var formattedLogo = companyLogo.replace("%src", currMeeting.logo);
+        // var isValid = IsValidImageUrl(currMeeting.logo);
+        // console.log(isValid);
+        var formattedLogo = companyLogo.replace("%src%", currMeeting.logo);
         topContainer.append(formattedLogo);
         var formattedInfo = companyName.replace('%name%', currMeeting.company);
         formattedInfo = formattedInfo.replace("%city%", currMeeting.city);
@@ -513,5 +515,15 @@ $(function(){
 
     function getProgressPercent(value){
         return Number(Math.round(value+'e2')+'e-2') * 100;
+    }
+
+    function IsValidImageUrl(url) {
+        url= '"'+url+'"';
+        console.log(url);
+    $("<img>", {
+        src: url,
+        error: function() { return false },
+        load: function() { return true}
+    });
     }
 });
