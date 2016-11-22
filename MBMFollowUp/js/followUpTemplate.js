@@ -7,11 +7,6 @@
 // to generate the modals
 //HTML elements for questionnaire
 
-//old
-var companyInfo = '<div class="row"><div class="col-xs-8 companyInfo"><h3 class="text-center">%CompanyName%</h3><strong>Meeting Time: </strong> %MeetingTime% <br><strong> NAICS Codes</strong> <ul id="naicsUL"></ul></div><img class="col-xs-4 img-responsive followUpCompanyLogo" src="%src%"></img></div>';
-var meetingTime = '';
-var naicsCodes = '';
-
 //current
 var yesBtn = '<button class="btn btn-success btn-md" id="yesBtn">Yes</button>';
 var noBtn = '<button class="btn btn-danger btn-md" id="noBtn">No</button>';
@@ -23,7 +18,7 @@ var notSelectedStarImg = '<img src="./images/notSelectedStar.png" class="starImg
 
 var favoritesNotSelectedImg = '<img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg" alt=""></img>';
 var favoritesDiv = '<div class="row favorites"><div class="col-xs-0 col-sm-1 col-md-2"></div><div class="col-xs-8 col-sm-7 col-md-5 text-center">%companyName%</div><div class="col-xs-0 col-sm-2 col-md-3"> <img src="./images/favoritesNotSelected.png" class="favoritesImg" id="favoritesImg%num%" alt=""></img></div><div class="col-xs-0 col-sm-1 col-md-2"></div></div>';
-var questionDiv = '<div class="question">%question%</div>'
+var questionDiv = '<div class="question text-center">%question%</div>'
 var textArea = '<textarea name="paragraph_text" class="form-control" rows="5" id="textArea" disabled></textarea>';
 var dropdownForm = '<select class="form-control" id="dropdownForm"></select>';
 var dropdownItem = '<option id="dropdown%num%">%value%</option>';
@@ -40,9 +35,7 @@ var companyLogo = '<div class="row"><div class="col-xs-9"></div><div class="col-
 var meetingHeader = '<h2 class="modal-title text-center" id="myModalLabel">Vendor Follow Ups</h2><h4 class="header-sub-title text-center" id="header-sub-title">Meeting %num%  :  %time%</h4>';
 var companyProfileDiv = '<div class="row"><div class="collapse col-xs-12" id="company-profile-div"><div class="card company-profile" id="company-profile"><p>Test</p></div></div></div>';
 var eventHeader = '<h2 class="modal-title text-center" id="myModalLabel">Event Follow Up</h2>';
-var progressBarSection = '<div class="progress-bar-section" id="progress-bar-section-%num%"></div>';
-var progressBarDiv = '<div class="row" id="progress-bar"></div>';
-
+var progressBarDiv = '<div class="row" id="progress-bar-div"><div class="col-xs-12 text-center" id="progress-bar-text">0% Complete</div><div class="col-xs-12"><div class="progress"><div class="progress-bar progress-bar-success" id="progress-bar" role="progress-bar" aria-valuenow="0" aria-valuemin="0", aria-valuemax="100" style="width:0%"></div></div></div></div>';
 var rootMeeting;
 var allMeetings = [];
 var rootMeetingQuestion;
@@ -146,14 +139,6 @@ function meetingSetup(clientMeetings){
     }
 
     return allMeetings[0];
-    // allMeetings[allMeetings.length-1].setNext(null);
-    //set up meetings
-    // meeting1 = new Meeting("Test Company 1", "8:00AM", ["11111", "22222", "33333"]);
-    // rootMeeting = meeting1;
-    // meeting2 = new Meeting("Test Company 2", "9:00AM", ["22222", "33333"]);
-    // meeting3 = new Meeting("Test Company 3", "9:30AM", ["44444"]);
-    // meeting1.setNext(meeting2);
-    // meeting2.setNext(meeting3);
 }
 
 $(function(){
@@ -161,9 +146,8 @@ $(function(){
     rootEventQuestion = questionSetup(questions.eventFollowUp, allEventQuestions);
     rootMeeting = meetingSetup(client.meetings);
 
-    var progressBarLength = (allMeetingQuestions.length*allMeetings.length) + allEventQuestions.length;
-    var currentProgress = 0;
-    var progressBarSectionLength = 100/progressBarLength;
+    var totalQuestions = (allMeetingQuestions.length*allMeetings.length) + allEventQuestions.length;
+    var currentQuestionNum = 0;
 
     var currQuestion = rootMeetingQuestion;
     var currMeeting = rootMeeting;
@@ -190,8 +174,8 @@ $(function(){
     var meetingNum = 0;
     $("#begin").on('click', function(){
         onMeetings = true;
-        renderNewMeeting();
         renderProgressBar();
+        renderNewMeeting();
     });
 
     function renderQuestion(){
@@ -225,24 +209,23 @@ $(function(){
                 renderAllDropdownOptions();
                 renderNextQuestionBtn();
             }
+            currentQuestionNum++;
+            updateProgressBar();
         }
-        updateProgressBar();
     }
 
     function renderProgressBar(){
         footer.append(progressBarDiv);
-        progressBar = $("#progress-bar");
-        for(var i = 0; i < progressBarLength; i++){
-            var formattedProgressBarSection = progressBarSection.replace("%num%", i);
-            progressBar.append(formattedProgressBarSection);
-        }
-        $(".progress-bar-section").css("width",progressBarSectionLength+"%");
     }
 
     function updateProgressBar(){
-        for(var i = 0; i<currentProgress; i++){
-            $("#progress-bar-section-" + i).addClass("progress-bar-section-completed");
-        }
+        var progressPercent = getProgressPercent((currentQuestionNum-1)/totalQuestions);
+        var progressBar = $("#progress-bar");
+        progressBar.attr("aria-valuenow", progressPercent);
+        progressBar.css("width", progressPercent+"%");
+        var progressBarText = $("#progress-bar-text");
+        progressBarText.text(progressPercent+"% Complete");
+
     }
 
     function renderNewMeeting(){
@@ -287,8 +270,6 @@ $(function(){
                 eventAnswers.push([currQuestion.question, "yes"])
             }
             currQuestion = currQuestion.yes;
-            currentProgress++;
-            console.log(currQuestion);
             renderQuestion();
         })
         noButton.on('click', function(){
@@ -298,7 +279,6 @@ $(function(){
                 eventAnswers.push([currQuestion.question, "no"])
             }
             currQuestion = currQuestion.no;
-            currentProgress++;
             renderQuestion();
         });
     }
@@ -314,10 +294,7 @@ $(function(){
             buttonRow.html('');
             buttonRow.append(nextMeetingBtn);
             $("#nextMeetingBtn").on('click', function(){
-                console.log(currentProgress);
-                console.log(Math.floor(currentProgress/allMeetingQuestions.length));
-                currentProgress = Math.floor(currentProgress/allMeetingQuestions.length)+allMeetingQuestions.length;
-                console.log(currentProgress);
+                currentQuestionNum = (Math.floor(currentQuestionNum/allMeetingQuestions.length)*allMeetingQuestions.length) + allMeetingQuestions.length;
                 renderNewMeeting();
             });
         }
@@ -383,7 +360,6 @@ $(function(){
             }
             if(questionAnswered){
                 currQuestion = currQuestion.next;
-                currentProgress++;
                 renderQuestion();
             }
         });
@@ -533,5 +509,9 @@ $(function(){
 
     function getSelectedFavorites(){
         $("")
+    }
+
+    function getProgressPercent(value){
+        return Number(Math.round(value+'e2')+'e-2') * 100;
     }
 });
