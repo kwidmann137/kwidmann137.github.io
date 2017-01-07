@@ -1,8 +1,8 @@
-var formData = [];
+var jsonObj = [];
 
 function createJSON(){
 
-	formData = [];
+	jsonObj = [];
 
 	$('.form input').each(function(){
 		var field = this.id;
