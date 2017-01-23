@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>O2LAC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <!-- scripts for jquery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+   <!-- scripts for bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- links for bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.min.css">
+
+    <!-- js -->
+    <script type="text/javascript" src="js/header.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/loadVideo.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/video.css">
+</head>
+<body class="container">
+    <!-- MENU -->
+    <a id="menu-toggle" href="#" class="btn btn-white btn-lg toggle"><i class="fa fa-bars"></i> <strong>Menu</strong></a>
+    <nav id="sidebar-wrapper" class="">
+        <ul class="sidebar-nav"><a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle btn-menu-close"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand" style="display: none;"><a href="#top" onclick="$(&quot;#menu-close&quot;).click();">Go to the top</a>
+            </li>
+            <li><a href="https://www.mybusinessmatches.com/admins/index" class="" title="">Dashboard</a>
+            </li>
+            <li><a href="#profb_custom_header" class="" title="" onclick="jQuery('#menu-close').click();">Go to the top</a>
+            </li>
+            <li><a href="#profb_mbm_stats" class="" title="" onclick="jQuery('#menu-close').click();">MBM Stats</a>
+            </li>
+            <li><a href="#about_profb" class="" title="" onclick="jQuery('#menu-close').click();">About</a>
+            </li>
+            <li><a href="#profb_ways_to_engage" class="" title="" onclick="jQuery('#menu-close').click();">Ways to Engage</a>
+            </li>
+            <li><a href="#profb_animated_thumbs" class="" title="" onclick="jQuery('#menu-close').click();">View Business Opportunities</a>
+            </li>
+            <li><a href="#profb_custom_footer" class="" title="" onclick="jQuery('#menu-close').click();">Contact Us</a>
+            </li>
+            <li style="display: none;"><a href="#contact">Contact us</a>
+            </li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#"><img src="https://cdn.mybusinessmatches.com/img/country/us.png?1475480414" alt="en change_language" class="" title="English"> English<span class="caret"></span>
+                </a>
+                <ul role="menu" class="dropdown-menu">
+                    <li>
+                        <a href="https://www.mybusinessmatches.com/lang/chi/prob" class="flagIcon" title="Chinese"><img src="https://cdn.mybusinessmatches.com/img/country/cn.png?1475480414" alt="CHINESE" class="" title="chi">Chinese</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="https://www.mybusinessmatches.com/lang/spa/prob" class="flagIcon" title="Español"><img src="https://cdn.mybusinessmatches.com/img/country/spa.png?1475480414" alt="SPANISH" class="" title="spa">Spanish</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="https://www.mybusinessmatches.com/lang/fin/prob" class="flagIcon" title="Finnish"><img src="https://cdn.mybusinessmatches.com/img/country/fi.png?1475480414" alt="FINISH" class="" title="Finnish">Finnish</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-divider"></li>
+            <li>
+                <p class="verified-menu"><small>This website is verified to work in Internet Explorer 11+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers.</small>
+                </p>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- HEADER -->
+    <div class="row custom-header">
+        <div class="col-xs-12">
+            <video autoplay loop muted class="embed-responsive-item" id="video-banner" src="https://cdn.mybusinessmatches.com/client-themes/vabit/images/video.m4v"></video>
+            <div class="well-cover well-md">
+                <h1 id="header-title" class="text-center">
+                    <span id="header-title-top">Puerto Rico</span>
+                    <br>
+                    <span id="header-title-bottom">Open for Business</span>
+                </h1>
+                <br>
+                <div class="text-center">
+                    <a target="_blank" href="#about_profb" class="btn btn-lg about-btn" id="header-about-btn">About</a> <a target="_blank" href="https://www.mybusinessmatches.com/forms/event/57d83519912d6" class="btn register-btn btn-lg" id="header-register-btn">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="row">
+        <div class="stats-section">
+            <div class="col-xs-12"><h2 class="text-center section-header">Be in the Know and claim your Opportunity</h2></div>
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 stats-box">
+                        <p class="text-center main-text">4</p>
+                        <p class="text-center sub-text">Events this month</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 stats-box">
+                    <p class="text-center main-text">1.2</p>
+                        <p class="text-center sub-text">Million Users</p>
+                        <div class="stats-border-left">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 stats-box">
+                        <p class="text-center main-text">15</p>
+                        <p class="text-center sub-text">Billion USD tracked</p>
+                        <div class="stats-border-left"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+
+    <div class="row about-profb">
+        <div class="col-md-12 col-lg-6 about-profb-left text-center well-sm" id="about-profb-left">
+            <h1>About Puerto Rico Open For Business</h1>
+            <p>Puerto Rico Open for Business generates success for small businesses across the country. Our new tool attracts a large number of participants and buying organizations to meet, engage, and build powerful relationships.
+            Puerto Rico Open for Business generates success for small businesses across the country. Our new tool attracts a large number of participants and buying organizations to meet, engage, and build powerful relationships.
+            Puerto Rico Open for Business generates success for small businesses across the country. Our new tool attracts a large number of participants and buying organizations to meet, engage, and build powerful relationships.
+            </p>
+            <div class="btn-group">
+                <a href="https://www.mybusinessmatches.com/forms/event/568a09577029b" class="btn btn-med register-btn">Register</a>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-lg-6 about-profb-right well-sm text-center" id="about-profb-right">
+            <div class="youtube-player" data-id="fJf6NMPITZ8"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="text-center section-header">Blueprint to Success</h2>
+        <ul class="what-is-mbm-ul">
+            <li class="first">
+                <div class="icon">
+                    <i class="fa fa-percent percent-icon" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h3 class="percent-icon">Compatability Scoring</h3>
+                    <p>This allows Primes and Diverse Suppliers to view their compatibility score according to the opportunities posted by the Prime.</p>
+                </div>
+            </li>
+            <li class="second">
+                <div class="icon">
+                    <i class="fa fa-desktop computer-icon" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h3 class="computer-icon">Ability to schedule meetings virtually</h3>
+                    <p>Primes are able to schedule and meet virtually with Diverse Suppliers avoiding the hassle and cost of travel.</p>
+                </div>
+            </li>
+            <li class="third">
+                <div class="icon">
+                    <i class="fa fa-handshake-o handshake-icon" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h3 class="handshake-icon">Post Opportunities</h3>
+                    <p>This tool provides Primes the ability to post current or upcoming opportunities, along with the requirements and the value.</p>
+                </div>
+            </li>
+            <li class="fourth">
+                <div class="icon">
+                    <i class="fa fa-search-plus search-icon" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h3 class="search-icon">Filter Suppliers</h3>
+                    <p>The tool is able to filter Diverse Suppliers by any specific Business Category or attribute.</p>
+                </div>
+            </li>
+            <li class="fifth">
+                <div class="icon">
+                    <i class="fa fa-thumbs-o-up rate-icon" aria-hidden="true"></i>
+                </div>
+                <div class="content">
+                    <h3 class="rate-icon">Rate suppliers</h3>
+                    <p>Allows Primes to rate Diverse Suppliers according to the first initial meeting and through the follow up process.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row opportunity-row">
+        <div class="col-sm-6 col-xs-12">
+            <div class="opportunity-img-container">
+                <div class="hovereffect">
+                    <img class="opportunity-img" src="http://placehold.it/350x200" alt="">
+                    <div class="overlay">
+                       <h2>Hover effect 1</h2>
+                       <a class="info" href="#">link here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <div class="opportunity-img-container">
+                <div class="hovereffect">
+                    <img class="opportunity-img" src="http://placehold.it/350x200" alt="">
+                    <div class="overlay">
+                       <h2>Hover effect 1</h2>
+                       <a class="info" href="#">link here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ways-to-engage-section">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <h2 class="text-center">WAYS TO ENGAGE</h2>
+            </div>
+            <div class="col-md-12 ways-to-engage-desc">
+                <h3>Puerto Rico Open for Business is the first tool to match you to the opportunities based on current and future needs.
+                </h3>
+            </div>
+        </div>
+
+        <div class="row engage-all-items">
+            <div class="col-sm-6 col-md-4">
+                <div class="row engage-box">
+                    <div class="col-xs-2 engage-number">
+                        <div class="flex-xs-middle number-box text-center">1</div>
+                    </div>
+                    <div class="col-xs-10 flex-xs-middle engage-info text-left">
+                        <a href="#">Attend An Event</a></div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="row engage-box">
+                    <div class="col-xs-2 engage-number">
+                        <div class="flex-xs-middle number-box text-center">2</div>
+                    </div>
+                    <div class="col-xs-10 flex-xs-middle engage-info text-left">
+                    <a href="#">Stay Informed</a></div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="row engage-box">
+                    <div class="col-xs-2 engage-number">
+                        <div class="flex-xs-middle number-box text-center">3</div>
+                    </div>
+                    <div class="col-xs-10 flex-xs-middle engage-info text-left">
+                    <a href="#">A Virtual Experience</a></div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="row engage-box">
+                    <div class="col-xs-2 engage-number">
+                        <div class="flex-xs-middle number-box text-center">4</div>
+                    </div>
+                    <div class="col-xs-10 flex-xs-middle engage-info text-left">
+                    <a href="#">Connect with Others</a></div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="row engage-box">
+                    <div class="col-xs-2 engage-number">
+                        <div class="flex-xs-middle number-box text-center">5</div>
+                    </div>
+                    <div class="col-xs-10 flex-xs-middle engage-info text-left">
+                    <a href="#">Check Compatibility</a></div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <div class="row engage-box">
+                    <div class="col-xs-2 engage-number">
+                        <div class="flex-xs-middle number-box text-center">6</div>
+                    </div>
+                    <div class="col-xs-10 flex-xs-middle engage-info text-left">
+                    <a href="#">Build Relationships</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row cur-events-row">
+        <div class="col-xs-4">
+            <div class="hovereffect2">
+                <img class="cur-events-img" src="http://placehold.it/350x250" alt="">
+                    <div class="overlay">
+                        <h2>Effect 12</h2>
+                        <p>
+                            <a href="#">LINK HERE</a>
+                        </p>
+                    </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="hovereffect2">
+                <img class="cur-events-img" src="http://placehold.it/350x250" alt="">
+                    <div class="overlay">
+                        <h2>Effect 13</h2>
+                        <p>
+                            <a href="#">LINK HERE</a>
+                        </p>
+                    </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="hovereffect2">
+                <img class="cur-events-img" src="http://placehold.it/350x250" alt="">
+                    <div class="overlay">
+                        <h2>Effect 12</h2>
+                        <p>
+                            <a href="#">LINK HERE</a>
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-footer row">
+            <p class="text-center text-danger">This website is verified to work in Internet Explorer 11+, Firefox 2+, Opera 9+, Google Chrome and Safari browsers.</p>
+            <div class="col-sm-12 col-md-4">
+                <h2>About</h2>
+                <p>Puerto Rico-Open For Business is a multifaceted tool that is investing in the growth and expansion of Puerto Rican Owned and Operated Businesses. Working with the Puerto Rican Government In an effort to provide a tool that allows local Vendors to connect with various government agencies, corporations, and International entities to help increase their range in the business world. Our user will be able to understand and evaluate various business opportunities on a scale never seen before.</p>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <h2>Contact Us</h2>
+                <div class="footer-center">
+                    <dl>
+                        <dt><i class="fa fa-map-marker" aria-hidden="true"></i></dt>
+                        <dd>Temp address</dd>
+                        <dt><i class="fa fa-phone" aria-hidden="true"></i></dt>
+                        <dd>Temp Phone</dd>
+                        <dt><i class="fa fa-clock-o" aria-hidden="true"></i></dt>
+                        <dd>Temp time</dd>
+                        <dt><i class="fa fa-envelope" aria-hidden="true"></i></dt>
+                        <dd>Temp email</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <h2>Follow Us</h2>
+                <div class="footer-center">
+                    <div class="follow-us-item"><a target="_blank" href="https://www.facebook.com/mybusinessmatches/?fref=ts"><i class="fa fa-facebook follow-us-logo" aria-hidden="true"></i></a></div>
+                    <div class="follow-us-item"><a target="_blank" href="https://twitter.com/mybusinessmatch"><i class="fa fa-twitter follow-us-logo" aria-hidden="true"></i></a></div>
+                    <div class="follow-us-item"><a target="_blank" href="https://www.youtube.com/user/MBMatches"><i class="fa fa-youtube follow-us-logo" aria-hidden="true"></i></a></div>
+                    <div class="follow-us-item"><a target="_blank" href="http://instagram.com/mybusinessmatches"><i class="fa fa-instagram follow-us-logo" aria-hidden="true"></i></a></div>
+                </div>
+            </div>
+        </div>
+</body>
+<script type="text/javascript">
+$(function(){
+    $.fn.inView = function(){
+        //Window Object
+        var win = $(window);
+        //the top Scroll Position in the page
+        var scrollPosition = win.scrollTop();
+        //Object to Check
+        obj = $(this);
+         //the end of the visible area in the page, starting from the scroll position
+        var visibleArea = win.scrollTop() + win.height();
+        // if on mobile device adjust offset top for jQuery known issue
+        if(win.width() < 769){
+            //the end of the object to check
+            var objEndPos = (obj.offset().top - win.scrollTop() + obj.outerHeight());
+            console.log(obj);
+            console.log(objEndPos);
+        }else{
+             //the end of the object to check
+            var objEndPos = Math.floor(obj.offset().top + obj.outerHeight());
+        }
+        return(visibleArea >= objEndPos && scrollPosition <= objEndPos ? true : false)
+    };
+
+    $(window).on('scroll', function(){
+        if($(window).width() > 768){
+            var list = $('.what-is-mbm-ul');
+            if(list.inView()){
+                $('li', list).each(function(){
+                    $(this).addClass("fade-in");
+                })
+            }
+        }
+    });
+})
+</script>
+</html>
