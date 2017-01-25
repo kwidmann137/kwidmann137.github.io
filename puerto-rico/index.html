@@ -367,7 +367,7 @@ $(function(){
         // }
         // else{
              //the end of the object to check
-            var objEndPos = Math.floor(obj.offset().top + obj.outerHeight());
+            var objEndPos = Math.floor(obj.offset().top + (obj.outerHeight()/2));
         // }
         return(visibleArea >= objEndPos && scrollPosition <= objEndPos ? true : false)
     };

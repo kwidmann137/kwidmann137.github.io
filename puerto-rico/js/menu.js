@@ -1,8 +1,10 @@
-$(function(){
-    $('#menu-toggle').on('click', function(){
-        $("#sidebar-wrapper").addClass('active');
+jQuery(function(){
+    jQuery('#menu-toggle').on('click', function(){
+        event.preventDefault();
+        jQuery("#sidebar-wrapper").addClass('active');
     });
-    $('#menu-close').on('click', function(){
-        $("#sidebar-wrapper").removeClass('active');
+    jQuery('#menu-close').on('click', function(){
+        event.preventDefault();
+        jQuery("#sidebar-wrapper").removeClass('active');
     });
 });

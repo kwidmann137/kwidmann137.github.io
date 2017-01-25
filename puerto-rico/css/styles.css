@@ -101,11 +101,15 @@
     .sidebar-nav{
         width: 350px;
     }
-    .sidebar-nav li {
+    .sidebar-nav li:not(:last-child) {
         list-style: none;
-        text-indent: 20px;
         line-height: 40px;
     }
+
+    .sidebar-nav li:last-child {
+        list-style: none;
+    }
+
     .sidebar-nav li a {
         display: block;
         text-decoration: none;
