@@ -479,7 +479,7 @@
 
     .cur-events-row{
         background-color: #2B2B2B;
-        padding: 50px 25px;
+        padding: 2%;
     }
     .cur-events-img{
         margin: 0 auto !important;
@@ -505,7 +505,7 @@
       overflow: hidden;
       top: 0;
       left: 0;
-      padding: 50px 20px;
+      padding: 5%;
     }
 
     .hovereffect2 img {
@@ -746,17 +746,23 @@
 /*MEIDA QUERIES*/
     /*GENERAL*/
     /*HEADER*/
-    @media only screen and (max-width: 360px) {
+    @media only screen and (max-width: 420px) {
         #header-title{
-            font-size: 2em;
+            font-size: 1.8em;
             margin-top: 8%;
         }
         .register-btn{
-            font-size: 1em !important;
+            font-size: .8em !important;
         }
 
         .about-btn{
-            font-size: 1em !important;
+            font-size: .8em !important;
+        }
+    }
+
+    @media only screen and (min-width: 420px) and (max-width: 769px){
+        #header-title{
+            font-size: 2.5em;
         }
     }
     /*STATS SECTION*/
@@ -1052,6 +1058,26 @@
         }
     }
     /*OPPORTUNITIES SECTION*/
+    @media only screen and (max-width: 768px){
+        .opportunity-img-container {
+            padding: 25px;
+        }
+        .opportunity-row {
+            padding: 0px 0px 25px 0px;
+        }
+    }
+
+    @media only screen and (max-width: 420px){
+        .hovereffect2{
+            margin: 5px;
+        }
+        .opportunity-img-container {
+            padding: 15px;
+        }
+        .opportunity-row {
+            padding: 0px 0px 15px 0px;
+        }
+    }
     /*WAYS TO SECTION*/
     /*CURRENT EVENTS SECTION*/
     /*FOOTER*/
