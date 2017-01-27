@@ -21,4 +21,4 @@ $('.carousel .item').each(function(){
 
 setInterval(function(){
   $("#right-carousel-control").trigger('click');
-}, 2000);
+}, 7000);
