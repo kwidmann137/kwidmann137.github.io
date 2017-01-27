@@ -1,5 +1,5 @@
 $('#myCarousel').carousel({
-  interval: 4000
+  interval: 2000
 });
 
 $('.carousel .item').each(function(){
@@ -7,14 +7,18 @@ $('.carousel .item').each(function(){
   if (!next.length) {
     next = $(this).siblings(':first');
   }
-  next.children(':first-child').clone().appendTo($(this));
+  // next.children(':first-child').clone().appendTo($(this));
 
-  for (var i=0;i<2;i++) {
-    next=next.next();
-    if (!next.length) {
-      next = $(this).siblings(':first');
-    }
+  // for (var i=0;i<2;i++) {
+  //   next=next.next();
+  //   if (!next.length) {
+  //     next = $(this).siblings(':first');
+  //   }
 
-    next.children(':first-child').clone().appendTo($(this));
-  }
+  //   next.children(':first-child').clone().appendTo($(this));
+  // }
 });
+
+setInterval(function(){
+  $("#right-carousel-control").trigger('click');
+}, 2000);
