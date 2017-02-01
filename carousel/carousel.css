@@ -1,21 +1,54 @@
-/* @media (min-width: 768px) and (max-width: 991px) {
-      #myCarousel .carousel-inner .item .item-item:last-child {
-        display: none;
-      }
-   }*/
-@media (max-width: 768px) {
-     #mymyCarousel .carousel-inner {
-      height: 320px;
-    }
- }
-.carousel-inner {
-  overflow-y: hidden;
+html, body {
+  margin: 0;
+  padding: 0;
 }
-.carousel-inner .active.left { left: -25%; }
-.carousel-inner .next        { left:  25%; }
-.carousel-inner .prev    { left: -25%; }
-.carousel-control        { width:  4%; }
-.carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
-.carousel-inner .item-item {
-  padding:0!important;
+
+* {
+  box-sizing: border-box;
+}
+
+.slider {
+    width: 90%;
+    margin: 20px auto;
+}
+
+@media only screen and (max-width: 768px){
+  .slider{
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 420px){
+  .slider{
+    width: 80%;
+  }
+}
+
+.slick-slide {
+  /*margin: 0px 20px;*/
+}
+
+.slick-slide img {
+  width: 100%;
+}
+
+.slick-prev:before{
+  color: white;
+  content: '\f053' !important;
+  font-family: FontAwesome;
+  font-style: normal;
+  text-shadow: -1px 1px 3px #000, 0px -1px #000, 1px 0px #000, 0px 1px #000;
+  font-size: 30px;
+  position: relative;
+  left: -10px;
+}
+.slick-next:before {
+  color: white;
+  content: '\f054' !important;
+  font-family: FontAwesome;
+  font-style: normal;
+  text-shadow: -1px 1px 3px #000, 0px -1px #000, 1px 0px #000, 0px 1px #000;
+  font-size: 30px;
+  position: relative;
+  left: 10px;
 }
