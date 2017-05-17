@@ -1,0 +1,268 @@
+/*CSS built mobile up*/
+
+div[class*=navbar-desktop-]{
+	display: none;
+}
+
+
+.gradient {
+    background: #605d5d; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #efefef, #605d5d); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #efefef, #605d5d); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #efefef, #605d5d); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #efefef, #605d5d); /* Standard syntax */
+  min-height: 100%;
+}
+
+.content-container{
+	position: fixed;
+	width: 100%;
+	top: 50px;
+	min-height: calc(100% - 50px);
+	margin-left: -15px;
+	z-index: -1;
+}
+
+.content{
+	position: absolute;
+	top: 50px;
+	width: 100%;
+	min-height: calc(100% - 50px);
+	padding: 15px;
+	z-index: 0;
+}
+
+.navbar{
+	margin-bottom: 0px;
+}
+
+.tile{
+	background-color: #fff;
+	margin: 20px;
+	padding: 15px;
+}
+
+.hover:hover{
+	cursor: pointer;
+}
+
+.tile-link{
+	color: #000;
+}
+
+.tile-link:hover{
+	text-decoration: none;
+	color: #000;
+}
+
+.fa.fa-file-pdf-o{
+	color: red;
+}
+
+.fa.fa-sticky-note-o{
+	color: #f1de5c;
+}
+
+.legend-color{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	float: left;
+}
+
+.legend{
+	margin-bottom: 10px;
+}
+/*MEDIA QUERIES FOR DESKTOP VIEW*/
+@media screen and (min-width: 420px){
+	nav[class*=navbar-mobile]{
+		display: none;
+	}
+
+	div[class*=navbar-desktop-]{
+		display: inline;
+		background-color: #fff;
+		position: fixed;
+		z-index: 1;
+	}
+
+	.content-container{
+		top: 80px;
+		min-height: calc(100% - 80px);
+	}
+
+	.navbar-desktop-header{
+		height: 80px;
+		width: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.navbar-desktop-sidebar{
+		top: 80px;
+		left: 0;
+		width: 200px;
+		min-height: calc(100% - 80px);
+		background-color: transparent !important;
+	}
+
+	.navbar-desktop-sidebar:after{
+		position: absolute;
+		margin-top: -10px;
+		height: 100%;
+		content: " ";
+		width: 200px;
+		background-color: #fff;
+	}
+
+	.navbar-desktop-sidebar ul{
+		list-style: none;
+		padding: 0px;
+		display: table;
+		width: 100%;
+	}
+
+	.navbar-desktop-sidebar li{
+		padding: 10px;
+		width: 100%;
+		font-size: 1.2em;
+		background: #fff;
+	}
+
+	.navbar-desktop-sidebar li[class*="active"], li[class*="active"] a{
+		color: #FCA64C !important;
+		background: transparent !important;
+	}
+
+	.navbar-desktop-sidebar li i{
+		display: table-cell;
+		width: 30px;
+		padding-right: 10px;
+		vertical-align: middle;
+	}
+
+	.navbar-desktop-sidebar li a{
+		color: #605d5d;
+		display: table-cell;
+	}
+
+	.navbar-desktop-sidebar li a:hover{
+		text-decoration: none;
+	}
+
+	.brand-logo{
+		height: 80px;
+		padding: 10px;
+	}
+
+
+	.portrait-container{
+		position: relative;
+	}
+
+	.portrait{
+		height: 60px;
+		width: 60px;
+		border-radius: 30px;
+		margin: 10px 20px;
+	}
+
+	.portrait:hover{
+		cursor: pointer;
+	}
+
+	.portrait-drop-down-menu{
+		position: absolute;
+		top: 90%;
+		right: 40%;
+		display: none;
+		background-color: #fff;
+		width: 250px;
+		border: 1px solid #a9a9a9;
+		border-radius: 3px;
+	}
+
+	.portrait-drop-down-menu li{
+		list-style: none;
+		padding: 10px 0px;
+	}
+
+	.portrait-drop-down-menu li a{
+		color: #605d5d;
+		font-size: 1.2em;
+	}
+
+	.portrait-drop-down-menu li i{
+		font-size: 1.2em;
+		width: 30px;
+		padding-right: 10px;
+
+	}
+
+	.portrait-drop-down-menu li a:hover{
+		text-decoration: none;
+	}
+
+/*	.portrait-drop-down-menu:after{
+		position: absolute;
+		content: " ";
+		top: -10px;
+		right: 10px;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 5px 10px 5px;
+		border-color: transparent transparent #a9a9a9 transparent;
+	}
+*/
+	.logout-link{
+		margin: 30px 20px;
+		color: #605d5d;
+		font-size: 1.2em;
+	}
+
+	.logout-link:hover{
+		text-decoration: none;
+		color: #605d5d;
+	}
+
+	.content{
+		left: 200px;
+		top: 80px;
+		width: calc(100% - 200px);
+		/*height: calc(100% - 80px);*/
+	}
+}
+
+@media screen and (min-width: 769px){
+	.navbar-desktop-sidebar{
+		width: 250px;
+	}
+
+	.navbar-desktop-sidebar:after{
+		width: 250px;
+	}
+
+	.navbar-desktop-sidebar li{
+		font-size: 1.5em;
+	}
+
+	.portrait-drop-down-menu li a{
+		color: #605d5d;
+		font-size: 1.5em;
+	}
+
+	.portrait-drop-down-menu li i{
+		font-size: 1.5em;
+
+	}
+	.logout-link{
+		font-size: 1.5em;
+	}
+
+	.content{
+		left: 250px;
+		width: calc(100% - 250px);
+	}
+	
+}

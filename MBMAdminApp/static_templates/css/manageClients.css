@@ -1,0 +1,28 @@
+.legend{
+}
+
+.legend-color{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	float: left;
+}
+
+.legend-title{
+	width: calc(100% - 30px);
+}
+
+.prospective-client{
+	background-color: rgba(252, 166, 76, 0.5);
+}
+
+.needs-action-client{
+	background-color: rgba(255, 0, 6, 0.5);	
+}
+
+.history-row a, .history-row a:hover{
+	color: #605d5d;
+	text-decoration: none;
+	width: 100%;
+	padding: 10px;
+}

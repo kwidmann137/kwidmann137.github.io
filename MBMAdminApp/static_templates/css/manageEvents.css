@@ -1,0 +1,52 @@
+.create-event{
+	background-color: rgba(48, 69, 236, 0.5);
+}
+
+.live-event{
+	background-color: rgba(48, 193, 56, 0.5);	
+}
+
+.day-before-event{
+	background-color: rgba(255, 0, 6, 0.5);	
+}
+
+.today-event{
+	background-color: rgba(252, 166, 76, 0.5);
+}
+
+.post-event{
+	background-color: rgba(0, 0, 0, 0.2);	
+}
+
+.tab-pane{
+	padding: 15px;
+	border: 1px solid #ddd;
+	display: none;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.nav>li{
+	top: 1px;
+}
+
+.nav>li[class*="active"]{
+	background-color: #fff;
+}
+
+.tab-pane i{
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.tab-pane i[class*="fa-times-circle"]{
+	color: rgba(255, 0, 6, 1);
+}
+
+.tab-pane i[class*="fa-check-circle"]{
+	color: rgba(48, 193, 56, 1);
+}
+
+.tab-pane[class*="active"]{
+	display: block;
+}

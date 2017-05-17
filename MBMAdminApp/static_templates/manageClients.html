@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MBM Admin</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- load font awesome -->
+    <link rel="stylesheet" href="css/fontAwesome/css/font-awesome.min.css">
+
+    <!-- load js -->
+
+    <!-- load custom css -->
+    <link rel="stylesheet" type="text/css" href="css/dashboard.common.css">
+    <link rel="stylesheet" type="text/css" href="css/manageClients.css">
+
+  </head>
+<body>
+	<!-- header for mobile menu -->
+	<nav class="navbar navbar-default navbar-mobile">
+		<div class="container-fluid">
+
+			<!-- brand and toggle get grouped for mobile display -->
+			<div class="navbar-header">
+	      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mobile-navbar-collapse" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+	      	</button>
+	      	<a class="navbar-brand" href="#">Brand</a>
+			</div>
+
+			<!-- nav links etc -->
+			<div class="collapse navbar-collapse" id="mobile-navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Manage Account</a></li>
+					<li><a href="#">Manage Clients</a></li>
+					<li><a href="#">Manage Events</a></li>
+					<li><a href="#">Manage Schedule</a></li>
+					<li><a href="#">Manage Users</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<!-- header for desktop view -->
+		<div class="navbar-desktop-header">
+			<img src="images/mbm-logo.png" class="brand-logo">
+			<div class="portrait-container pull-right">
+				<img src="images/genericPortrait.jpg" class="portrait">
+				<ul class="portrait-drop-down-menu">
+					<li><i class="fa fa-user-circle" aria-hidden="true"></i><a href="#">My Account</a></li>
+					<li><i class="fa fa-cog" aria-hidden="true"></i><a href="#">Settings</a></li>
+				</ul>
+			</div>
+			<a href="#" class="logout-link pull-right">Logout</a>
+		</div>
+
+		<!-- side menu for desktop view -->
+		<div class="navbar-desktop-sidebar">
+			<ul class="">
+				<li ><i class="fa fa-tachometer" aria-hidden="true"></i><a href="dashboard.html">Dashboard</a></li>
+				<li class="active"><i class="fa fa-briefcase" aria-hidden="true"></i><a href="manageClients.html">Manage Clients</a></li>
+				<li><i class="fa fa-handshake-o" aria-hidden="true"></i><a href="manageEvents.html">Manage Events</a></li>
+				<li><i class="fa fa-calendar" aria-hidden="true"></i><a href="schedule.html">Manage Schedule</a></li>
+				<li><i class="fa fa-users" aria-hidden="true"></i><a href="#">Manage Users</a></li>
+			</ul>
+<!-- 			<div class="navbar-desktop-sidebar-spacer">
+			</div> -->
+		</div>
+
+		<!-- content -->
+		<div class="content-container gradient">
+		</div>
+			<div class="content">
+				<div class="tile">
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="text-center"> All Clients</h2>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="legend col-xs-12 col-sm-6 col-md-3">
+							<div class="legend-color prospective-client">
+								
+							</div>
+							<div class="legend-title">
+								Prospective
+							</div>
+						</div>
+
+						<div class="legend col-xs-12 col-sm-6 col-md-3">
+							<div class="legend-color needs-action-client">
+								
+							</div>
+							<div class="legend-title">
+								Needs action
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-3"></div>
+						<div class="col-xs-12 col-md-3">
+							<a href="clients/add.html" class="btn btn-primary pull-right">Add Prospective Client</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-md-6 col-lg-4">
+						<a href="clients/edit.html" class="tile-link">
+						<div class="tile hover needs-action-client">
+							<h3 class="text-center">Client 1</h3>
+							<hr>
+							<p><strong>Status: </strong>Needs Action</p>
+						</div>
+						</a>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-4">
+						<div class="tile hover">
+							<h3 class="text-center">Client 2</h3>
+							<hr>
+							<p><strong>Status: </strong>Existing</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-4">
+						<div class="tile hover">
+							<h3 class="text-center">Client 3</h3>
+							<hr>
+							<p><strong>Status: </strong>Existing</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-4">
+						<div class="tile hover">
+							<h3 class="text-center">Client 4</h3>
+							<hr>
+							<p><strong>Status: </strong>Existing</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-4">
+						<div class="tile hover prospective-client">
+							<h3 class="text-center">Client 5</h3>
+							<hr>
+							<p><strong>Status: </strong>Prospective</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-4">
+						<div class="tile hover prospective-client">
+							<h3 class="text-center">Client 6</h3>
+							<hr>
+							<p><strong>Status: </strong>Prospective</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- </div> -->
+
+	</div>
+
+<!-- load JS -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+    	jQuery('.portrait').on('click', function(){
+    		var dropDown = jQuery('.portrait-drop-down-menu');
+    		dropDown.is(':visible') ? dropDown.css('display', 'none') : dropDown.css('display', 'inline');
+    	});
+    </script>
+</body>
+</html>
