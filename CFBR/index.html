@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crossfit Bandera Road</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="img/logo-1.png">
+	<!-- JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body class="container-fluid">
+	<!-- menu -->
+	<nav class="navbar navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <img class="navbar-brand" src="img/logo-2.png">
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
+	        <li><a href="about.html">About Us</a></li>
+	        <li><a href="meetTheCoaches.html">Meet The Coaches</a></li>
+	        <li><a href="WODs.html">WODs</a></li>
+	        <li><a href="testimonials.html">What Our Members Say</a></li>
+	        <li><a href="contactUs.html">Contact Us</a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<!-- background -->
+	<div class="background row">
+		<div class="img-container">
+			<img src="img/cfbr-1.jpg">
+		</div>
+		<div class="img-overlay">
+			
+		</div>
+	</div>
+	<div class="header-spacer row">
+		<div class="header-banner col-xs-12 text-center">
+			<img src="img/banner-4.png">
+		</div>
+	</div>
+
+	<!-- about -->
+	<div class="row">
+		<div class="container-fluid banner-info-container">
+			<div class="row banner-info">
+				<div class="col-xs-12 col-sm-4 text-center">
+					<h4>About CFBR</h4>
+					<a href="about.html">
+						<div class="learn-more-container">
+							<span>Learn More</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-12 col-sm-4 text-center">
+					<h4>Meet the Coaches</h4>
+					<a href="meetTheCoaches.html">
+						<div class="learn-more-container">
+							<span>Learn More</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-12 col-sm-4 text-center">
+					<h4>What is Crossfit?</h4>
+					<a href="#what-is">
+						<div class="learn-more-container">
+							<span>Learn More</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- What is -->
+	<div class="row what-is" id="what-is">
+		<div class="col-xs-12 col-md-6 text-center">
+			<h4>What is Crossfit?</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<div class="youtube-player" data-id="mlVrkiCoKkg"></div>
+		</div>
+	</div>
+
+	<!-- footer -->
+
+</body>
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded",
+    function() {
+        var div, n,
+            v = document.getElementsByClassName("youtube-player");
+        for (n = 0; n < v.length; n++) {
+            div = document.createElement("div");
+            div.setAttribute("data-id", v[n].dataset.id);
+            div.innerHTML = labnolThumb(v[n].dataset.id);
+            div.onclick = labnolIframe;
+            v[n].appendChild(div);
+        }
+    });
+
+function labnolThumb(id) {
+    var thumb = '<img src="https://i.ytimg.com/vi/ID/hqdefault.jpg">',
+        play = '<div class="play"></div>';
+    return thumb.replace("ID", id) + play;
+}
+
+function labnolIframe() {
+    var iframe = document.createElement("iframe");
+    var embed = "https://www.youtube.com/embed/ID?autoplay=1";
+    iframe.setAttribute("src", embed.replace("ID", this.dataset.id));
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("allowfullscreen", "1");
+    this.parentNode.replaceChild(iframe, this);
+}
+</script>
+</html>
