@@ -2,10 +2,10 @@
 
 var CACHE = 'pwabuilder-precache';
 var precacheFiles = [
-    'dist/vendor.css',
-    'dist/site.css',
-    'dist/vendor.js',
-    'dist/main.js',
+    '/FindYourMark/dist/vendor.css',
+    '/FindYourMark/dist/site.css',
+    '/FindYourMark/dist/vendor.js',
+    '/FindYourMark/dist/main.js',
 ];
 
 //Install stage sets up the cache-array to configure pre-cache content
