@@ -24,9 +24,26 @@ self.addEventListener('activate', function (event) {
     return self.clients.claim();
 });
 
+self.addEventListener('beforeinstallprompt', function(evt) {
+    evt.preventDefault();
+    evt.prompt();
+    evt.userChoice.then(function(result) {
+        if (result.outcome === 'accepted') {
+            console.log("Add to home screen accepted");
+        } else {
+            console.log("Add to home screen dismissed");
+        }
+    });
+});
+
 self.addEventListener('fetch', function (evt) {
-    console.log('[Find Your Mark] The service worker is serving the asset.' + evt.request.url);
-    evt.respondWith(fromCache(evt.request).catch(fromServer(evt.request)));
+    console.log('[Find Your Mark] The service worker is serving the asset. ' + evt.request.url);
+    if (evt.request.url.indexOf('https://kwidmann137.github.io') == 0) {
+        evt.respondWith(fromCache(evt.request).catch(fromServer(evt.request)));
+    } else {
+        console.log("Non local resource match.");
+        fetch(evt.request).then(function (response) { console.log(response); });
+    }
     evt.waitUntil(update(evt.request));
 });
 

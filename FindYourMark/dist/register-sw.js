@@ -7,7 +7,7 @@ if (navigator.serviceWorker.controller) {
 
     //Register the ServiceWorker
     navigator.serviceWorker.register('/FindYourMark/sw.js', {
-        scope: '/FindYourMark/'
+        scope: './'
     }).then(function (reg) {
         console.log('Service worker has been registered for scope:' + reg.scope);
     }).catch(function(error) {

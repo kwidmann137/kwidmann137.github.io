@@ -1,108 +1,111 @@
 ﻿{
-    "name": "Find your Mark",
-    "short_name": "Land Mark",
-    "description": "Boundary survey mapping in real time.",
-    "icons": [
-      {
-        "src": "/FindYourMark/dist/images/0a6905cb-eb8c-98db-f9c1-92b8126299cd.webPlatform.png",
-        "sizes": "44x44",
-        "type": "image/png"
-      },
-        {
-            "src": "/FindYourMark/dist/images/45c11058-e6ab-cf3e-53bb-7b6f512d9328.webPlatform.png",
-            "sizes": "48x48",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/8fb5ce51-d08f-bf06-a871-7e22772e6107.webPlatform.png",
-            "sizes": "1240x600",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/a574bccf-d25d-b7fb-3ba1-c6f7085ee32b.webPlatform.png",
-            "sizes": "300x300",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/fd6ed356-b756-7d9e-f14f-63fd7ecfaea9.webPlatform.png",
-            "sizes": "150x150",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/3c9dbb19-a7b8-ad85-3c88-bab1ccc7d559.webPlatform.png",
-            "sizes": "88x88",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/dfd29169-7e61-be3c-6285-40df5a59c487.webPlatform.png",
-            "sizes": "24x24",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/86c177a9-d1b5-5d92-3b69-fd71482b0cda.webPlatform.png",
-            "sizes": "50x50",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/70302e94-0a79-6b20-8276-94b734c66aae.webPlatform.png",
-            "sizes": "620x300",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/f03acf20-48b8-2729-2b4a-fb1ad95a7f09.webPlatform.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/4a23c29a-9b48-8088-81c8-37da44928059.webPlatform.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/a59ffdea-977c-d175-ee5d-d451654a3f40.webPlatform.png",
-            "sizes": "96x96",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/584d41fd-1812-489b-e13e-965168c0ff38.webPlatform.png",
-            "sizes": "72x72",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/edd6a248-283d-2189-57a5-681709cfdffb.webPlatform.png",
-            "sizes": "36x36",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/a6c306c9-8c7d-3de5-6a94-d56e9bef366f.webPlatform.png",
-            "sizes": "1024x1024",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/46cc32c9-f4e8-4db5-dd4c-46d7c590ecf4.webPlatform.png",
-            "sizes": "180x180",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/1187bc2c-e066-1361-39b2-bdff998d1786.webPlatform.png",
-            "sizes": "152x152",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/0ee82af5-72e6-550a-7834-81cd856a46c2.webPlatform.png",
-            "sizes": "120x120",
-            "type": "image/png"
-        },
-        {
-            "src": "/FindYourMark/dist/images/e6e6641a-9553-d8db-9fc6-27a745472016.webPlatform.png",
-            "sizes": "76x76",
-            "type": "image/png"
-        }
-    ],
-    "start_url": "/FindYourMark",
-    "display": "fullscreen",
-    "theme_color": "#224b8e",
-    "background_color": "#224b8e",
-    "lang": "",
-    "orientation": "portrait"
+  "manifest_version": 1,
+  "version": "1",
+  "name": "Find your Mark",
+  "default_locale": "en",
+  "description": "Boundary survey mapping in real time.",
+  "icons": [
+    {
+      "src": "/FindYourMark/dist/images/0a6905cb-eb8c-98db-f9c1-92b8126299cd.webPlatform.png",
+      "sizes": "44x44",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/45c11058-e6ab-cf3e-53bb-7b6f512d9328.webPlatform.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/8fb5ce51-d08f-bf06-a871-7e22772e6107.webPlatform.png",
+      "sizes": "1240x600",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/a574bccf-d25d-b7fb-3ba1-c6f7085ee32b.webPlatform.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/fd6ed356-b756-7d9e-f14f-63fd7ecfaea9.webPlatform.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/3c9dbb19-a7b8-ad85-3c88-bab1ccc7d559.webPlatform.png",
+      "sizes": "88x88",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/dfd29169-7e61-be3c-6285-40df5a59c487.webPlatform.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/86c177a9-d1b5-5d92-3b69-fd71482b0cda.webPlatform.png",
+      "sizes": "50x50",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/70302e94-0a79-6b20-8276-94b734c66aae.webPlatform.png",
+      "sizes": "620x300",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/f03acf20-48b8-2729-2b4a-fb1ad95a7f09.webPlatform.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/4a23c29a-9b48-8088-81c8-37da44928059.webPlatform.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/a59ffdea-977c-d175-ee5d-d451654a3f40.webPlatform.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/584d41fd-1812-489b-e13e-965168c0ff38.webPlatform.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/edd6a248-283d-2189-57a5-681709cfdffb.webPlatform.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/a6c306c9-8c7d-3de5-6a94-d56e9bef366f.webPlatform.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/46cc32c9-f4e8-4db5-dd4c-46d7c590ecf4.webPlatform.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/1187bc2c-e066-1361-39b2-bdff998d1786.webPlatform.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/0ee82af5-72e6-550a-7834-81cd856a46c2.webPlatform.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/FindYourMark/dist/images/e6e6641a-9553-d8db-9fc6-27a745472016.webPlatform.png",
+      "sizes": "76x76",
+      "type": "image/png"
+    }
+  ],
+  "short_name": "Land Mark",
+  "start_url": "https://kwidmann137.github.io/FindYourMark/",
+  "display": "fullscreen",
+  "theme_color": "#224b8e",
+  "background_color": "#224b8e",
+  "lang": "",
+  "orientation": "portrait"
 }
